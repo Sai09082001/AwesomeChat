@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/ic_mail_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="6dp"
+        android:textSize="24dp"
+        android:layout_marginStart="24dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/black"
+        android:text="Trải nghiệm Awesome chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="16dp"
+        android:textSize="24dp"
+        android:layout_marginStart="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#4356B4"
+        android:text="Đăng nhập"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#676767"
+        android:textSize="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="24dp"
+        android:text="EMAIL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <FrameLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edt_your_email"
+            android:textColor="#676767"
+            android:layout_marginEnd="24dp"
+            android:textSize="20dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="24dp"
+            android:layout_width="match_parent"
+            android:hint="yourname@gmail.com"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:layout_gravity="top|end"
+            android:src="@drawable/ic_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+    <TextView
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#676767"
+        android:textSize="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:text="MẬT KHẨU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <FrameLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edt_your_password"
+            android:textColor="#676767"
+            android:layout_marginEnd="24dp"
+            android:textSize="20dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="24dp"
+            android:layout_width="match_parent"
+            android:hint="********"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:layout_gravity="top|end"
+            android:src="@drawable/ic_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+    <TextView
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:layout_gravity="end"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#4356B4"
+        android:text="Quên mật khẩu?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textSize="18dp"
+        android:text="ĐĂNG NHẬP"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:background="@drawable/custom_button_login"
+        android:layout_height="wrap_content"/>
+    <TableRow
+        android:layout_marginTop="90dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="14dp"
+            android:layout_gravity="end"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#676767"
+            android:text="Chưa có tài khoản?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_register_now"
+            android:layout_marginStart="5dp"
+            android:textSize="14dp"
+            android:layout_gravity="end"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="#4356B4"
+            android:text="Đăng ký ngay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+</LinearLayout>
