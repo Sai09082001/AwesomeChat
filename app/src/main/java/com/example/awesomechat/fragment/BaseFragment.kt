@@ -40,11 +40,6 @@ abstract class BaseFragment<K : ViewBinding, V : BaseViewModel> : Fragment(), Vi
         return v
     }
 
-    final override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mContext = context
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

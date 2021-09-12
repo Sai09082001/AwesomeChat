@@ -21,6 +21,7 @@ class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
         Handler(Looper.getMainLooper()).postDelayed({
             gotoLoginScreen()
         }, 2000)
+        NavHostFragment.findNavController(this).popBackStack(R.id.splashFragment, true)
     }
 
     private fun gotoLoginScreen() {

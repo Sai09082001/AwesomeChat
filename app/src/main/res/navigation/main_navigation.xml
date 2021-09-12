@@ -11,14 +11,16 @@
         android:label="SplashFragment"
         android:name="com.example.awesomechat.fragment.SplashFragment"
         tools:layout="@layout/splash_fragment">
-        <action
-            android:id="@+id/action_splash_to_loginFragment"
-            app:destination="@id/loginFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:label="LoginFragment"
         android:name="com.example.awesomechat.fragment.LoginFragment"
         tools:layout="@layout/login_fragment"/>
-
+    <action
+        app:popUpTo="@+id/splash_fragment"
+        app:popUpToInclusive="true"
+        android:id="@+id/action_splash_to_loginFragment"
+        app:destination="@id/loginFragment" />
 </navigation>
