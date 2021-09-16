@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_marginStart="24dp"
         android:layout_marginTop="64dp"
         android:src="@drawable/ic_back"
@@ -14,7 +14,7 @@
 
     <TextView
         android:layout_marginTop="36dp"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:layout_marginStart="24dp"
         android:fontFamily="sans-serif-medium"
         android:textColor="#4356B4"
@@ -24,7 +24,7 @@
     <TextView
         android:fontFamily="sans-serif-medium"
         android:textColor="#676767"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="40dp"
         android:layout_marginStart="24dp"
         android:text="HỌ VÀ TÊN"
@@ -36,9 +36,10 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/edt_name_regis"
             android:textColor="#676767"
             android:layout_marginEnd="24dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_marginTop="6dp"
             android:layout_marginStart="24dp"
             android:layout_width="match_parent"
@@ -56,7 +57,7 @@
     <TextView
         android:fontFamily="sans-serif-medium"
         android:textColor="#676767"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="20dp"
         android:layout_marginStart="24dp"
         android:text="EMAIL"
@@ -68,9 +69,11 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:inputType="textEmailAddress"
+            android:id="@+id/edt_email_regis"
             android:textColor="#676767"
             android:layout_marginEnd="24dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_marginTop="6dp"
             android:layout_marginStart="24dp"
             android:layout_width="match_parent"
@@ -87,7 +90,7 @@
     <TextView
         android:fontFamily="sans-serif-medium"
         android:textColor="#676767"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_marginTop="20dp"
         android:layout_marginStart="24dp"
         android:text="MẬT KHẨU"
@@ -99,9 +102,11 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/edt_password_regis"
             android:textColor="#676767"
             android:layout_marginEnd="24dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
+            android:inputType="textPassword"
             android:layout_marginTop="6dp"
             android:layout_marginStart="24dp"
             android:layout_width="match_parent"
@@ -133,7 +138,7 @@
 
             <TextView
                 android:layout_marginStart="5dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#676767"
@@ -141,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#4356B4"
@@ -149,7 +154,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#676767"
@@ -158,7 +163,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:layout_marginStart="5dp"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:layout_gravity="end"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#4356B4"
@@ -168,12 +173,13 @@
 
     </LinearLayout>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_register"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
         android:padding="16dp"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:text="ĐĂNG KÝ"
         android:textColor="@color/white"
         android:layout_width="match_parent"
@@ -186,7 +192,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:layout_gravity="end"
             android:fontFamily="sans-serif-medium"
             android:textColor="#676767"
@@ -196,7 +202,7 @@
         <TextView
             android:id="@+id/tv_login_now"
             android:layout_marginStart="5dp"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:layout_gravity="end"
             android:fontFamily="sans-serif-medium"
             android:textColor="#4356B4"

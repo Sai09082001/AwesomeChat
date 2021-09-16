@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edt_your_email"
             android:textColor="#676767"
             android:layout_marginEnd="24dp"
@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edt_your_password"
             android:textColor="#676767"
             android:layout_marginEnd="24dp"

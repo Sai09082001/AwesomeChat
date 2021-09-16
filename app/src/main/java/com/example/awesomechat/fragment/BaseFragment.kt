@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
@@ -17,7 +18,7 @@ import com.example.awesomechat.databinding.LoginFragmentBinding
 import com.example.awesomechat.viewmodel.BaseViewModel
 import javax.inject.Inject
 
-abstract class BaseFragment<K : ViewBinding, V : BaseViewModel> : Fragment(), View.OnClickListener{
+abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment(), View.OnClickListener{
     lateinit var mContext: Context
     lateinit var mRootView: View
     var mData: Any? = null
@@ -60,14 +61,10 @@ abstract class BaseFragment<K : ViewBinding, V : BaseViewModel> : Fragment(), Vi
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
-    final override fun onClick(v: View?) {
-        v?.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.abc_popup_enter))
-        doClickView(v)
+    override fun onClick(v: View?) {
+        // do something
     }
 
-    open fun doClickView(v: View?) {
-        TODO("Not yet implemented")
-    }
 
     abstract fun initViews()
 

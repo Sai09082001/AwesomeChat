@@ -7,23 +7,28 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.viewbinding.ViewBinding
+import com.example.awesomechat.viewmodel.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
-abstract class BaseActivity<V : ViewDataBinding> : AppCompatActivity() {
-    protected var binding: V? = null
-
+abstract class BaseActivity<BD : ViewDataBinding , VM : BaseViewModel> : AppCompatActivity() {
+    protected var binding: BD? = null
+    private lateinit var mViewModel: VM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val rootView: View = LayoutInflater.from(this).inflate(getLayoutId(), null)
         setContentView(rootView)
         binding = initBinding(rootView)
+        mViewModel = getVM()
         initViews()
     }
 
+    abstract fun getVM(): VM
+
     abstract fun initViews()
 
-    abstract fun initBinding(rootView: View): V?
+    abstract fun initBinding(rootView: View): BD?
 
     abstract fun getLayoutId(): Int
 
