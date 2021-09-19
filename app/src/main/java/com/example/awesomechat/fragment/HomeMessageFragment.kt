@@ -22,4 +22,6 @@ class HomeMessageFragment : BaseFragment<HomeMessageFragmentBinding, HomeMessage
     override fun getLayoutId(): Int {
         return R.layout.home_message_fragment
     }
+
+
 }

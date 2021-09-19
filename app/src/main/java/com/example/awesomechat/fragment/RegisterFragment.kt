@@ -9,11 +9,17 @@ import com.example.awesomechat.R
 import com.example.awesomechat.databinding.RegisterFragmentBinding
 import com.example.awesomechat.model.Users
 import com.example.awesomechat.viewmodel.RegisterViewModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel>() {
+class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel>(){
+    private lateinit var mAuth : FirebaseAuth
     override fun initViews() {
+        mAuth = FirebaseAuth.getInstance()
         binding!!.tvRegister.setOnClickListener(View.OnClickListener {
             val userName = binding!!.edtNameRegis.text.toString()
             val email = binding!!.edtEmailRegis.text.toString()
@@ -29,10 +35,15 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
             if (TextUtils.isEmpty(password)) {
                 Toast.makeText(context, "password is required", Toast.LENGTH_SHORT).show()
             }
-            val user = Users(userName,email,password)
             Toast.makeText(context, "oki", Toast.LENGTH_SHORT).show()
-            FirebaseDatabase.getInstance().getReference().child("users").push().setValue(user)
-            NavHostFragment.findNavController(this).navigate(R.id.loginFragment)
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
+                OnCompleteListener {
+                    if (it.isSuccessful){
+                        NavHostFragment.findNavController(this).navigate(R.id.loginFragment)
+                    }
+                })
+        //    FirebaseDatabase.getInstance().getReference().child("users").push().setValue(user)
+
         })
         binding!!.tvLoginNow.setOnClickListener(View.OnClickListener {
             NavHostFragment.findNavController(this).navigate(R.id.loginFragment)
@@ -50,4 +61,5 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
     override fun getLayoutId(): Int {
         return R.layout.register_fragment
     }
+
 }

@@ -41,6 +41,26 @@
         android:label="HomeMessageFragment"
         tools:layout="@layout/home_message_fragment" >
 
+        <action
+            android:id="@+id/action_home_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.example.awesomechat.fragment.MyPageFragment"
+        android:label="MyPageFragment"
+        tools:layout="@layout/my_page_fragment" >
+
+        <action
+            android:id="@+id/action_myPage_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.awesomechat.fragment.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/edit_profile_fragment" >
+
     </fragment>
 
 </navigation>
