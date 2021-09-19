@@ -44,6 +44,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_save"
             android:layout_width="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_height="wrap_content"
@@ -104,6 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edt_name"
                     android:hint="Awesome Chat"
                     android:textSize="18sp"
                     android:background="@android:color/transparent"
@@ -143,6 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edt_phone"
                     android:hint="0123456789"
                     android:textSize="18sp"
                     android:background="@android:color/transparent"
@@ -182,6 +185,7 @@
                     android:layout_height="wrap_content"/>
                 <androidx.appcompat.widget.AppCompatEditText
                     android:hint="09/09/1999"
+                    android:id="@+id/edt_date"
                     android:textSize="18sp"
                     android:background="@android:color/transparent"
                     android:layout_marginTop="24dp"
