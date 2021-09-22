@@ -12,9 +12,10 @@ import com.example.awesomechat.viewmodel.LoginViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
+@AndroidEntryPoint
 class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
     private lateinit var edtEmail: AppCompatEditText
     private lateinit var edtPassword: AppCompatEditText

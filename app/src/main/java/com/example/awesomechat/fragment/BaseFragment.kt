@@ -16,6 +16,7 @@ import com.example.awesomechat.AwesomeChat
 import com.example.awesomechat.R
 import com.example.awesomechat.databinding.LoginFragmentBinding
 import com.example.awesomechat.viewmodel.BaseViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment(), View.OnClickListener{

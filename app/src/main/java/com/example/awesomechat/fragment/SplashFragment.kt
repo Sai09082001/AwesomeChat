@@ -10,18 +10,47 @@ import com.example.awesomechat.databinding.LoginFragmentBinding
 import com.example.awesomechat.databinding.SplashFragmentBinding
 import com.example.awesomechat.navigation.AppNavigation
 import com.example.awesomechat.viewmodel.SplashViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firebaseUser: FirebaseUser
+    private lateinit var dataRef : DatabaseReference
     @Inject
     lateinit var appNavigation: AppNavigation
     override fun initViews() {
+        auth = FirebaseAuth.getInstance()
+        dataRef = FirebaseDatabase.getInstance().reference.child("Users")
         Handler(Looper.getMainLooper()).postDelayed({
-            gotoLoginScreen()
+            if (auth.currentUser!= null){
+                firebaseUser = auth.currentUser!!
+                dataRef.child(firebaseUser.uid).addValueEventListener(object : ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if(snapshot.exists()){
+                            gotoHomeMessage()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+            }else{
+                gotoLoginScreen()
+            }
+
         }, 2000)
-        NavHostFragment.findNavController(this).popBackStack(R.id.splashFragment, true)
+    //    NavHostFragment.findNavController(this).popBackStack(R.id.splashFragment, true)
+    }
+
+    private fun gotoHomeMessage() {
+        NavHostFragment.findNavController(this).navigate(R.id.homeMessageFragment)
     }
 
     private fun gotoLoginScreen() {

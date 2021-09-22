@@ -2,12 +2,14 @@ package com.example.awesomechat.fragment
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.icu.number.NumberFormatter.with
 import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
+import com.bumptech.glide.Glide
 import com.example.awesomechat.R
 import com.example.awesomechat.databinding.EditProfileFragmentBinding
 import com.example.awesomechat.viewmodel.EditProfileViewModel
@@ -16,11 +18,12 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfileViewModel>() {
     private val REQUEST_CODE: Int = 101
     private lateinit var uriImage : Uri
@@ -50,6 +53,26 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
         })
     }
 
+    override fun onStart() {
+        super.onStart()
+        if(firebaseUser!= null){
+            dataRef.child(firebaseUser.uid).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        Glide.with(context!!).load(snapshot.child("profileImage").value.toString()).into(binding!!.ivProfile)
+                        edtName.setText(snapshot.child("name").value.toString())
+                        edtPhone.setText(snapshot.child("phone").value.toString())
+                        edtDate.setText(snapshot.child("date").value.toString())
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }
+    }
     private fun saveDataEdit(edtName: String, edtPhone: String, edtDate: String) {
         if (TextUtils.isEmpty(edtName)) {
             Toast.makeText(context, "Yêu cầu họ tên ", Toast.LENGTH_SHORT).show()
