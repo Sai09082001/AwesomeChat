@@ -23,6 +23,8 @@ class FriendFragment : BaseFragment<FriendFragmentBinding, FriendViewModel>() {
             }
 
         }).attach()
+        binding!!.layoutSearchMessage.tvTitleSearch.setHint("Tìm kiếm bạn bè")
+
     }
 
     override fun initBinding(mRootView: View): FriendFragmentBinding? {

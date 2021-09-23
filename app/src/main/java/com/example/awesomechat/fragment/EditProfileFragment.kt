@@ -37,7 +37,6 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
 
     override fun initViews() {
         auth = FirebaseAuth.getInstance()
-        firebaseUser = auth.currentUser!!
         dataRef =FirebaseDatabase.getInstance().reference.child("Users")
         storageRef = FirebaseStorage.getInstance().reference.child("ProfileImages")
          edtName = findViewById<AppCompatEditText>(R.id.edt_name)!!
@@ -51,15 +50,13 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
         binding!!.tvSave.setOnClickListener(View.OnClickListener {
             saveDataEdit(edtName.text.toString(),edtPhone.text.toString(),edtDate.text.toString() );
         })
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if(firebaseUser!= null){
+        if(auth.currentUser!= null){
+            firebaseUser = auth.currentUser!!
             dataRef.child(firebaseUser.uid).addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
                         Glide.with(context!!).load(snapshot.child("profileImage").value.toString()).into(binding!!.ivProfile)
+                        Toast.makeText(context,"oooo",Toast.LENGTH_SHORT).show()
                         edtName.setText(snapshot.child("name").value.toString())
                         edtPhone.setText(snapshot.child("phone").value.toString())
                         edtDate.setText(snapshot.child("date").value.toString())
@@ -73,6 +70,7 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
             })
         }
     }
+
     private fun saveDataEdit(edtName: String, edtPhone: String, edtDate: String) {
         if (TextUtils.isEmpty(edtName)) {
             Toast.makeText(context, "Yêu cầu họ tên ", Toast.LENGTH_SHORT).show()
@@ -84,29 +82,42 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
         if (TextUtils.isEmpty(edtDate)) {
             Toast.makeText(context, "Yêu cầu ngày tháng năm sinh", Toast.LENGTH_SHORT).show()
         }
-        storageRef.child(firebaseUser.uid).putFile(uriImage).addOnCompleteListener(
-            OnCompleteListener {
-                if(it.isSuccessful){
-                    storageRef.child(firebaseUser.uid).downloadUrl.addOnSuccessListener(
-                        OnSuccessListener {
-                            var hashMap : HashMap<String, String>
-                                    = HashMap<String, String> ()
+//        storageRef.child(firebaseUser.uid).putFile(uriImage).addOnCompleteListener(
+//            OnCompleteListener {
+//                if(it.isSuccessful){
+//                    storageRef.child(firebaseUser.uid).downloadUrl.addOnSuccessListener(
+//                        OnSuccessListener {
+//                            var hashMap : HashMap<String, String>
+//                                    = HashMap<String, String> ()
+//
+//                            // put() function
+//                            hashMap.put("name" , edtName)
+//                            hashMap.put("phone" , edtPhone)
+//                            hashMap.put("date" , edtDate)
+//                            hashMap.put("profileImage",uriImage.toString())
+//                            hashMap.put("status","offline")
+//                            dataRef.child(firebaseUser.uid).updateChildren(hashMap as Map<String, Any>).addOnSuccessListener(
+//                                OnSuccessListener {
+//                                     Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show()
+//                                }).addOnFailureListener(OnFailureListener {
+//                                     Toast.makeText(context,"Fail",Toast.LENGTH_SHORT).show()
+//                            })
+//                        })
+//                }
+//            })
+        var hashMap : HashMap<String, String>
+                = HashMap<String, String> ()
 
-                            // put() function
-                            hashMap.put("name" , edtName)
-                            hashMap.put("phone" , edtPhone)
-                            hashMap.put("date" , edtDate)
-                            hashMap.put("profileImage",uriImage.toString())
-                            hashMap.put("status","offline")
-                            dataRef.child(firebaseUser.uid).updateChildren(hashMap as Map<String, Any>).addOnSuccessListener(
-                                OnSuccessListener {
-                                     Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show()
-                                }).addOnFailureListener(OnFailureListener {
-                                     Toast.makeText(context,"Fail",Toast.LENGTH_SHORT).show()
-                            })
-                        })
-                }
-            })
+        // put() function
+        hashMap.put("name" , edtName)
+        hashMap.put("phone" , edtPhone)
+        hashMap.put("date" , edtDate)
+        hashMap.put("profileImage",uriImage.toString())
+        hashMap.put("status","offline")
+        dataRef.child(firebaseUser.uid).updateChildren(hashMap as Map<String, Any>,
+            DatabaseReference.CompletionListener { error, ref ->
+                Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show()
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

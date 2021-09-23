@@ -10,6 +10,8 @@ class Users {
     var password: String? = null
     var profileImage : String? = null
     var status : String? = null
+    var message : String?= null
+    var friend : Users? = null
 
     @Inject
     constructor(userName: String?, mail: String?, password: String?,profileImage: String?,status: String?) {
@@ -20,7 +22,15 @@ class Users {
         this.status = status
     }
 
-    constructor() {}
+    constructor(userName: String?, mail: String?, password: String?,profileImage: String?,status: String?,message : String?,friend : Users?) {
+        this.userName = userName
+        this.mail = mail
+        this.password = password
+        this.profileImage = profileImage
+        this.status = status
+        this.message = message
+        this.friend = friend
+    }
 
     override fun toString(): String {
         return "Users{" +

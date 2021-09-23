@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/tv_title_search"
         android:hint="Tìm kiếm tin nhắn"
         android:background="@android:color/transparent"
         android:textSize="16sp"
