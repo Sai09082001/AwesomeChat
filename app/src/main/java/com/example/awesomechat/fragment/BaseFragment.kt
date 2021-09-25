@@ -23,7 +23,7 @@ abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment()
     lateinit var mContext: Context
     lateinit var mRootView: View
     var mData: Any? = null
-    lateinit var mViewModel: V
+    protected var mViewModel: V ? =  null
     protected var binding: K? = null
 
     companion object {

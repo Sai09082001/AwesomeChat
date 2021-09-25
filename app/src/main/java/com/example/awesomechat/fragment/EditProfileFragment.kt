@@ -105,15 +105,14 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
 //                        })
 //                }
 //            })
-        var hashMap : HashMap<String, String>
-                = HashMap<String, String> ()
+        var hashMap : HashMap<String, Any>
+                = HashMap<String, Any> ()
 
         // put() function
         hashMap.put("name" , edtName)
         hashMap.put("phone" , edtPhone)
         hashMap.put("date" , edtDate)
         hashMap.put("profileImage",uriImage.toString())
-        hashMap.put("status","offline")
         dataRef.child(firebaseUser.uid).updateChildren(hashMap as Map<String, Any>,
             DatabaseReference.CompletionListener { error, ref ->
                 Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show()
