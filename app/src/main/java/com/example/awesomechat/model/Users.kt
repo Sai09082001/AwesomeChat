@@ -1,38 +1,43 @@
 package com.example.awesomechat.model
 
 import com.google.firebase.database.IgnoreExtraProperties
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @IgnoreExtraProperties
 class Users {
     var userName: String? = null
     var mail: String? = null
     var password: String? = null
+    var date : String? = null
+    var phone : String?= null
     var profileImage : String? = null
-    var status : Boolean? = false
-    var request : Boolean? = false
+    var isMe : String? = null
+    var listRequest : ArrayList<String>? = null
     var message : String?= null
-    var friend : Users? = null
+    var friends : ArrayList<Users>? = null
 
-    @Inject
-    constructor(userName: String?, mail: String?, password: String?,profileImage: String?,status: Boolean?) {
+    constructor(userName: String?, mail: String?,password: String?,date: String?,phone : String?
+                ,profileImage: String?,isMe : String?,listRequest: ArrayList<String>?) {
         this.userName = userName
         this.mail = mail
-        this.password = password
+        this.date = date
+        this.password= password
+        this.phone = phone
+        this.isMe = isMe
         this.profileImage = profileImage
-        this.status = status
-        this.request = request
+        this.listRequest = listRequest
     }
 
-    constructor(userName: String?, mail: String?, password: String?,profileImage: String?,status: Boolean?,request: Boolean?,message : String?,friend : Users?) {
+    constructor(userName: String?, mail: String?, password: String?,profileImage: String?,listRequest: ArrayList<String>?,message : String?,friends : ArrayList<Users>?) {
         this.userName = userName
         this.mail = mail
         this.password = password
         this.profileImage = profileImage
-        this.status = status
-        this.request = request
+        this.listRequest = listRequest
         this.message = message
-        this.friend = friend
+        this.friends = friends
     }
 
     override fun toString(): String {

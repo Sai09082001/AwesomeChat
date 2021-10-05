@@ -3,60 +3,44 @@ package com.example.awesomechat.fragment
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.example.awesomechat.R
-import com.example.awesomechat.databinding.AllUsersFragmentBinding
-import com.example.awesomechat.model.Users
-import com.example.awesomechat.viewmodel.AllUsersViewModel
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-
-import android.view.LayoutInflater
-
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
+import com.example.awesomechat.R
 import com.example.awesomechat.adapter.AllUsersAdapter
-import com.firebase.ui.auth.data.model.User
-import com.google.firebase.database.*
+import com.example.awesomechat.databinding.AllUsersFragmentBinding
+import com.example.awesomechat.model.Users
+import com.example.awesomechat.viewmodel.AllUsersViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 
 class AllUsersFragment : BaseFragment<AllUsersFragmentBinding, AllUsersViewModel>() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var userAdapter: AllUsersAdapter
-    private lateinit var listUsers : ArrayList<Users>
 
     override fun initViews() {
-        Toast.makeText(context,"All Users Fragment", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "All Users Fragment", Toast.LENGTH_SHORT).show()
 
         auth = FirebaseAuth.getInstance()
         firebaseUser = auth.currentUser!!
 
-       initAdapter();
-        subcriData();
+        binding!!.rvAllUsers.layoutManager = LinearLayoutManager(context)
+        val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        binding!!.rvAllUsers.addItemDecoration(dividerItemDecoration)
+        subcriData()
     }
 
     private fun subcriData() {
         mViewModel!!.loadAllUsers()
         mViewModel!!.listUsers.observe(viewLifecycleOwner, Observer {
-            listUsers = mViewModel!!.listUsers.value!!
-            Log.i("KMFG", "initViews: "+listUsers)
-            userAdapter.notifyDataSetChanged()
-
+           // listUsers.addAll(mViewModel!!.listUsers.value!!)
+            it.let {
+                userAdapter = AllUsersAdapter(requireContext(), it)
+                binding!!.rvAllUsers.adapter = userAdapter
+            }
         })
-    }
-
-    private fun initAdapter() {
-        binding!!.rvAllUsers.layoutManager = LinearLayoutManager(context)
-        val dividerItemDecoration = DividerItemDecoration(context,DividerItemDecoration.VERTICAL)
-        binding!!.rvAllUsers.addItemDecoration(dividerItemDecoration)
-        listUsers = arrayListOf()
-        userAdapter = AllUsersAdapter(requireContext(),listUsers)
-        binding!!.rvAllUsers.adapter = userAdapter
     }
 
 //    private fun loadAllUsers() {

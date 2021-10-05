@@ -34,10 +34,9 @@ object BundleKey {
     const val KEY_PARAM_LIST_MESSAGE = "KEY_PARAM_LIST_MESSAGE"
 }
 
-object GiftType {
-    const val HEART = 1
-    const val ROSE = 2
-    const val CROWN = 3
+object KeyFileShare {
+     const val KEY_EMAIL = "KEY_EMAIL"
+     const val FILE_NAME = "file_shared"
 }
 
 object TypeAlert {

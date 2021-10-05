@@ -11,10 +11,7 @@ import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
-import com.example.awesomechat.AwesomeChat
-import com.example.awesomechat.R
-import com.example.awesomechat.databinding.LoginFragmentBinding
+
 import com.example.awesomechat.viewmodel.BaseViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

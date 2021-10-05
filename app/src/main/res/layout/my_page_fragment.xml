@@ -207,6 +207,7 @@
                     android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_logout"
                     android:text="Đăng xuất"
                     android:textSize="18sp"
                     android:fontFamily="sans-serif"

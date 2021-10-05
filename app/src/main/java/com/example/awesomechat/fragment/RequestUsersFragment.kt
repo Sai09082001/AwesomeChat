@@ -11,7 +11,7 @@ class RequestUsersFragment : BaseFragment<RequestUsersFragmentBinding, RequestUs
         Toast.makeText(context,"Request Users Fragment", Toast.LENGTH_SHORT).show()
     }
 
-    override fun initBinding(mRootView: View): RequestUsersFragmentBinding? {
+    override fun initBinding(mRootView: View): RequestUsersFragmentBinding {
         return RequestUsersFragmentBinding.bind(mRootView)
     }
 

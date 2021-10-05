@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout
+        android:paddingVertical="6dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="6dp"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="40dp"
+            app:civ_border_width="0.5dp"
+            android:layout_gravity="center|start"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_avatar"
+            app:civ_border_color="@color/gray" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_user_name"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginStart="50dp"
+            android:text="Bin"
+            android:layout_gravity="start|center"
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_accept"
+            android:text="Đồng ý"
+            android:visibility="visible"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="16dp"
+            android:background="@drawable/custom_friend_request"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/white"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="end|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_cancel"
+            android:text="Hủy"
+            android:visibility="gone"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="24dp"
+            android:background="@drawable/custom_friend_cancel"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/blue"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="end|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+</layout>

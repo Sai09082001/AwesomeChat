@@ -1,6 +1,7 @@
 package com.example.awesomechat.fragment
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.NavHostController
@@ -13,7 +14,10 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,13 +41,14 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
                 Toast.makeText(context, "password is required", Toast.LENGTH_SHORT).show()
             }
             Toast.makeText(context, "oki", Toast.LENGTH_SHORT).show()
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
-                OnCompleteListener {
-                    if (it.isSuccessful){
-                        NavHostFragment.findNavController(this).navigate(R.id.loginFragment)
-                    }
-                })
-        //    FirebaseDatabase.getInstance().getReference().child("users").push().setValue(user)
+//            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
+//                OnCompleteListener {
+//                    if (it.isSuccessful){
+//                        NavHostFragment.findNavController(this).navigate(R.id.loginFragment)
+//                    }
+//                })
+             val user = Users(userName,email,password,"","","","",null)
+             FirebaseDatabase.getInstance().getReference().child("Users").push().setValue(user)
 
         })
         binding!!.tvLoginNow.setOnClickListener(View.OnClickListener {
@@ -51,7 +56,7 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding, RegisterViewModel
         })
     }
 
-    override fun initBinding(mRootView: View): RegisterFragmentBinding? {
+    override fun initBinding(mRootView: View): RegisterFragmentBinding {
         return RegisterFragmentBinding.bind(mRootView)
     }
 
