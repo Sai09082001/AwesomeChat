@@ -8,14 +8,17 @@ import javax.inject.Inject
 
 
 @ActivityScoped
-class AppNavigatorImpl @Inject constructor() : BaseNavigatorImpl(),AppNavigation,
-    LiveNavigation {
+class AppNavigatorImpl @Inject constructor() : BaseNavigatorImpl(), AppNavigation {
 
-    override fun openLogoutScreen(bundle: Bundle?) {
-
+    override fun openSplashToLoginScreen(bundle: Bundle? ) {
+        openScreen(R.id.action_splash_to_loginFragment, bundle)
     }
 
-    override fun openLoginScreen(bundle: Bundle?) {
-        openScreen(R.id.action_splash_to_loginFragment,bundle)
+    override fun openLoginToHomeScreen(bundle: Bundle?) {
+        openScreen(R.id.action_login_to_homeMessageFragment, bundle)
+    }
+
+    override fun openLoginToRegisterScreen(bundle: Bundle?) {
+        openScreen(R.id.action_login_to_regisFragment,bundle)
     }
 }

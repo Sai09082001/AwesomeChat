@@ -5,29 +5,27 @@ import android.content.SharedPreferences
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.navigation.fragment.NavHostFragment
+import androidx.lifecycle.Observer
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.LoginFragmentBinding
-import com.example.awesomechat.model.Users
+import com.example.awesomechat.navigation.AppNavigation
 import com.example.awesomechat.utils.KeyFileShare.FILE_NAME
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
     private lateinit var edtEmail: AppCompatEditText
     private lateinit var edtPassword: AppCompatEditText
 
-    private var listUsers: ArrayList<Users>? = null
-    private var auth: FirebaseAuth? = null
+    @Inject
+    lateinit var appNavigation: AppNavigation
+
     override fun initViews() {
-        listUsers = arrayListOf()
-        auth = FirebaseAuth.getInstance()
         edtEmail = findViewById<AppCompatEditText>(R.id.edt_your_email)!!
         edtPassword = findViewById<AppCompatEditText>(R.id.edt_your_password)!!
-
+        checkUserLogin()
         binding.tvLogin.setOnClickListener(View.OnClickListener {
             if (edtEmail.text.toString().isEmpty()) {
                 Toast.makeText(context, "email is required", Toast.LENGTH_SHORT).show()
@@ -36,24 +34,33 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, LoginViewModel>() {
             if (edtPassword.text.toString().isEmpty()) {
                 Toast.makeText(context, "password is required", Toast.LENGTH_SHORT).show()
             }
-            if(!edtEmail.text.toString().isEmpty() && !edtPassword.text.toString().isEmpty() ){
-                doUserLogin(edtEmail.text.toString(), edtPassword.text.toString())
+            if (!edtEmail.text.toString().isEmpty() && !edtPassword.text.toString().isEmpty()) {
+                mViewModel.doUserLogin(edtEmail.text.toString(), edtPassword.text.toString())
+                mViewModel.stateLogin.observe(this, Observer {
+                    if (it) {
+                        appNavigation.openLoginToHomeScreen()
+                    } else {
+                        Toast.makeText(context, "Email or password not true", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                })
             }
 
         })
 
         binding.tvRegisterNow.setOnClickListener({
-            NavHostFragment.findNavController(this).navigate(R.id.registerFragment)
+            appNavigation.openLoginToRegisterScreen()
         })
     }
 
-    private fun doUserLogin(email: String, password: String) {
-        auth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener(
-            OnCompleteListener {
-                if (it.isSuccessful) {
-                    NavHostFragment.findNavController(this).navigate(R.id.homeMessageFragment)
-                }
-            })
+    private fun checkUserLogin() {
+        mViewModel.setValue()
+        mViewModel.handleLogin()
+        mViewModel.navigateLogin.observe(this, Observer {
+            if (it) {
+                appNavigation.openLoginToHomeScreen()
+            }
+        })
     }
 
     fun savePref(key: String?, value: String?) {

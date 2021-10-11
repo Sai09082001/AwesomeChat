@@ -13,19 +13,12 @@
         <action
             android:id="@+id/action_splash_to_loginFragment"
             app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_splash_to_homeMessageFragment"
-            app:destination="@id/homeMessageFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.awesomechat.ui.register.RegisterFragment"
         android:label="RegisterFragment"
-        tools:layout="@layout/register_fragment">
-        <action
-            android:id="@+id/action_register_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/register_fragment"/>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.awesomechat.ui.login.LoginFragment"
@@ -42,29 +35,7 @@
         android:id="@+id/homeMessageFragment"
         android:name="com.example.awesomechat.ui.homemessage.HomeMessageFragment"
         android:label="HomeMessageFragment"
-        tools:layout="@layout/home_message_fragment" >
-
-        <action
-            android:id="@+id/action_home_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/myPageFragment"
-        android:name="com.example.awesomechat.ui.mypage.MyPageFragment"
-        android:label="MyPageFragment"
-        tools:layout="@layout/my_page_fragment" >
-
-        <action
-            android:id="@+id/action_myPage_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/friendFragment"
-        android:name="com.example.awesomechat.ui.friend.FriendFragment"
-        android:label="FriendFragment"
-        tools:layout="@layout/friend_fragment" >
-
-    </fragment>
+        tools:layout="@layout/home_message_fragment" />
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.awesomechat.ui.editprofile.EditProfileFragment"

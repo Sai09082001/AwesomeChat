@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 
@@ -13,18 +14,18 @@ abstract class BaseActivity<BD : ViewDataBinding , VM : BaseViewModel> : AppComp
     private lateinit var mViewModel: VM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val rootView: View = LayoutInflater.from(this).inflate(getLayoutId(), null)
-        setContentView(rootView)
-        binding = initBinding(rootView)
+//        val rootView: View = LayoutInflater.from(this).inflate(getLayoutId(), null)
+//        setContentView(rootView)
+        // do mình goi setcontentview ở trên nên nó vậy
+        binding =   DataBindingUtil.setContentView(this, getLayoutId())
         mViewModel = getVM()
         initViews()
+
     }
 
     abstract fun getVM(): VM
 
     abstract fun initViews()
-
-    abstract fun initBinding(rootView: View): BD
 
     abstract fun getLayoutId(): Int
 

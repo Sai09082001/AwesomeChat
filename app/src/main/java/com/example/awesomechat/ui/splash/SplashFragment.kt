@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
@@ -22,45 +23,44 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
-    private lateinit var auth: FirebaseAuth
-    private lateinit var firebaseUser: FirebaseUser
-    private lateinit var dataRef: DatabaseReference
 
     @Inject
     lateinit var appNavigation: AppNavigation
-    override fun initViews() {
-        auth = FirebaseAuth.getInstance()
-        dataRef = FirebaseDatabase.getInstance().reference.child("Users")
-        Handler(Looper.getMainLooper()).postDelayed({
-            if (isExistPref(KEY_EMAIL)) {
-                Toast.makeText(context, "" + getPref(KEY_EMAIL), Toast.LENGTH_SHORT).show()
-                gotoHomeMessage()
-            } else {
-                gotoLoginScreen()
-            }
 
-        }, 2000)
+    override fun initViews() {
+
+      //  dataRef = FirebaseDatabase.getInstance().reference.child("Users")
+        handleSplashScreen()
         //    NavHostFragment.findNavController(this).popBackStack(R.id.splashFragment, true)
     }
+    fun handleSplashScreen(){
+        Handler(Looper.getMainLooper()).postDelayed({
+//            if (auth.currentUser!= null) {
+//                appNavigation.openLoginToHomeScreen()
+//            } else {
+//                appNavigation.openSplashToLoginScreen()
+//            }
 
-    fun isExistPref(key: String?): Boolean {
-        val pref: SharedPreferences = requireContext()
-            .getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-        return pref.contains(key)
+//          mViewModel.navigateSplash.observe(this, Observer {
+//              if(it){
+//                  appNavigation.openSplashToLoginScreen()
+//              }else{
+//                  appNavigation.openSplashToLoginScreen()
+//              }
+//          })
+            appNavigation.openSplashToLoginScreen()
+        }, 2000)
     }
+//    fun isExistPref(key: String?): Boolean {
+//        val pref: SharedPreferences = requireContext()
+//            .getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+//        return pref.contains(key)
+//    }
 
     fun getPref(key: String?): String? {
         val pref: SharedPreferences = requireContext()
             .getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         return pref.getString(key, null)
-    }
-
-    private fun gotoHomeMessage() {
-        NavHostFragment.findNavController(this).navigate(R.id.homeMessageFragment)
-    }
-
-    private fun gotoLoginScreen() {
-        NavHostFragment.findNavController(this).navigate(R.id.loginFragment)
     }
 
     override fun initBinding(mRootView: View): SplashFragmentBinding {

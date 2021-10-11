@@ -2,7 +2,7 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -14,6 +14,7 @@
             android:layout_height="match_parent" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_gravity="bottom"
             android:id="@+id/layout_bottom_bar"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="12dp"
@@ -25,5 +26,5 @@
             app:itemIconTint="@color/custom_color_bottom_bar"
             app:itemTextColor="@color/custom_color_bottom_bar"
             app:menu="@menu/menu_bottom_navigation" />
-    </RelativeLayout>
+    </FrameLayout>
 </layout>

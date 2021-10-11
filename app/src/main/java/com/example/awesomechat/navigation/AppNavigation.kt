@@ -5,5 +5,7 @@ import com.example.awesomechat.base.BaseNavigator
 
 interface AppNavigation : BaseNavigator{
 
-    fun openLoginScreen( bundle: Bundle ?= null)
+    fun openSplashToLoginScreen( bundle: Bundle ?= null)
+    fun openLoginToHomeScreen( bundle: Bundle ?= null)
+    fun openLoginToRegisterScreen( bundle: Bundle ?= null)
 }

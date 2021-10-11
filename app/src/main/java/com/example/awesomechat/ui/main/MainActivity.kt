@@ -1,6 +1,5 @@
-package com.example.awesomechat.act
+package com.example.awesomechat.ui.main
 
-import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.example.awesomechat.R
@@ -21,10 +20,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
-    }
-
-    override fun initBinding(rootView: View): ActivityMainBinding {
-        return ActivityMainBinding.bind(rootView)
     }
 
     override fun initViews() {

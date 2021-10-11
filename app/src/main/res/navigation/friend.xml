@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/friend"
+    app:startDestination="@id/friendFragment2">
+
+    <fragment
+        android:id="@+id/friendFragment2"
+        android:name="com.example.awesomechat.ui.friend.FriendFragment"
+        android:label="FriendFragment" />
+</navigation>
