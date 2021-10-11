@@ -8,10 +8,10 @@ import com.example.awesomechat.viewmodel.MyFriendViewModel
 
 class MyFriendFragment : BaseFragment<MyFriendFragmentBinding, MyFriendViewModel>() {
     override fun initViews() {
-        Toast.makeText(context,"My Friend Fragment",Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "My Friend Fragment", Toast.LENGTH_SHORT).show()
     }
 
-    override fun initBinding(mRootView: View): MyFriendFragmentBinding? {
+    override fun initBinding(mRootView: View): MyFriendFragmentBinding {
         return MyFriendFragmentBinding.bind(mRootView)
     }
 

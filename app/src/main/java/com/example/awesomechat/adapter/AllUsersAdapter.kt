@@ -1,31 +1,18 @@
 package com.example.awesomechat.adapter
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.ListAdapter
-import android.widget.Toast
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.awesomechat.KeyFileShare
 import com.example.awesomechat.R
 import com.example.awesomechat.databinding.ItemUserBinding
-import com.example.awesomechat.databinding.LoginFragmentBinding
 import com.example.awesomechat.model.Users
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.coroutines.withContext
-import java.util.concurrent.Executors
-import kotlin.math.log
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class AllUsersAdapter(val context : Context, var listUsers :ArrayList<Users>) :

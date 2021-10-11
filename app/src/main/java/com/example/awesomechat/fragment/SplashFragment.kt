@@ -4,21 +4,19 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.example.awesomechat.KeyFileShare.FILE_NAME
 import com.example.awesomechat.KeyFileShare.KEY_EMAIL
 import com.example.awesomechat.R
-import com.example.awesomechat.databinding.LoginFragmentBinding
 import com.example.awesomechat.databinding.SplashFragmentBinding
 import com.example.awesomechat.navigation.AppNavigation
 import com.example.awesomechat.viewmodel.SplashViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -26,7 +24,7 @@ import javax.inject.Inject
 class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firebaseUser: FirebaseUser
-    private lateinit var dataRef : DatabaseReference
+    private lateinit var dataRef: DatabaseReference
 
     @Inject
     lateinit var appNavigation: AppNavigation
@@ -34,15 +32,15 @@ class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
         auth = FirebaseAuth.getInstance()
         dataRef = FirebaseDatabase.getInstance().reference.child("Users")
         Handler(Looper.getMainLooper()).postDelayed({
-            if (isExistPref(KEY_EMAIL)){
-                Toast.makeText(context,""+getPref(KEY_EMAIL),Toast.LENGTH_SHORT).show()
+            if (isExistPref(KEY_EMAIL)) {
+                Toast.makeText(context, "" + getPref(KEY_EMAIL), Toast.LENGTH_SHORT).show()
                 gotoHomeMessage()
-            }else{
+            } else {
                 gotoLoginScreen()
             }
 
         }, 2000)
-    //    NavHostFragment.findNavController(this).popBackStack(R.id.splashFragment, true)
+        //    NavHostFragment.findNavController(this).popBackStack(R.id.splashFragment, true)
     }
 
     fun isExistPref(key: String?): Boolean {
@@ -66,7 +64,7 @@ class SplashFragment : BaseFragment<SplashFragmentBinding, SplashViewModel>() {
     }
 
     override fun initBinding(mRootView: View): SplashFragmentBinding {
-       return SplashFragmentBinding.bind(mRootView)
+        return SplashFragmentBinding.bind(mRootView)
     }
 
     override fun getViewModelClass(): Class<SplashViewModel> {

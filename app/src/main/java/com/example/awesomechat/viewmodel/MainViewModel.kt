@@ -1,7 +1,6 @@
 package com.example.awesomechat.viewmodel
 
 import android.content.Context
-import com.example.awesomechat.IntentData
 import com.example.awesomechat.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

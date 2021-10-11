@@ -1,11 +1,12 @@
 package com.example.awesomechat.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import com.example.awesomechat.model.Users
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
-class AllUsersViewModel : BaseViewModel(){
+class AllUsersViewModel : BaseViewModel() {
 //     var listUsers : MutableLiveData<ArrayList<Users>> = MutableLiveData()
 //     private lateinit var dataRef : DatabaseReference
 //     fun loadAllUsers() {
@@ -45,31 +46,32 @@ class AllUsersViewModel : BaseViewModel(){
 //               listUsers.value = list
 //     }
 
-     fun updateUsers(txt : String){
-          val dataRef = FirebaseDatabase.getInstance().reference.child("Users")
-          var hashMap : HashMap<String, Any>
-                  = HashMap<String, Any> ()
+    fun updateUsers(txt: String) {
+        val dataRef = FirebaseDatabase.getInstance().reference.child("Users")
+        var hashMap: HashMap<String, Any> = HashMap<String, Any>()
 
-          hashMap.put("status", true)
-          dataRef.addValueEventListener(object : ValueEventListener {
-               override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    for (postSnapshot in dataSnapshot.children) {
-                         if(postSnapshot.child("request").getValue()!! == false &&
-                              postSnapshot.child("name").getValue()!!.equals(txt)){
-                              dataRef.child(postSnapshot.key.toString()).child("request").setValue(true)
-                         }else if(postSnapshot.child("request").getValue()!! == true &&
-                              postSnapshot.child("name").getValue()!!.equals(txt)) {
-                              dataRef.child(postSnapshot.key.toString()).child("request").setValue(false)
-                         }
+        hashMap.put("status", true)
+        dataRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (postSnapshot in dataSnapshot.children) {
+                    if (postSnapshot.child("request").value!! == false &&
+                        postSnapshot.child("name").value!!.equals(txt)
+                    ) {
+                        dataRef.child(postSnapshot.key.toString()).child("request").setValue(true)
+                    } else if (postSnapshot.child("request").value!! == true &&
+                        postSnapshot.child("name").value!!.equals(txt)
+                    ) {
+                        dataRef.child(postSnapshot.key.toString()).child("request").setValue(false)
                     }
-               }
+                }
+            }
 
-               override fun onCancelled(databaseError: DatabaseError) {
-                    // Getting Post failed, log a message
-                    Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
-                    // ...
-               }
-          })
-     }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
+                // ...
+            }
+        })
+    }
 
 }

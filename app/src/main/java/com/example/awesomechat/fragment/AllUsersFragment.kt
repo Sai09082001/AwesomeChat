@@ -1,6 +1,5 @@
 package com.example.awesomechat.fragment
 
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.awesomechat.R
 import com.example.awesomechat.adapter.AllUsersAdapter
 import com.example.awesomechat.databinding.AllUsersFragmentBinding
-import com.example.awesomechat.model.Users
 import com.example.awesomechat.viewmodel.AllUsersViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -35,7 +33,7 @@ class AllUsersFragment : BaseFragment<AllUsersFragmentBinding, AllUsersViewModel
     private fun subcriData() {
         mViewModel!!.loadAllUsers()
         mViewModel!!.listUsers.observe(viewLifecycleOwner, Observer {
-           // listUsers.addAll(mViewModel!!.listUsers.value!!)
+            // listUsers.addAll(mViewModel!!.listUsers.value!!)
             it.let {
                 userAdapter = AllUsersAdapter(requireContext(), it)
                 binding!!.rvAllUsers.adapter = userAdapter

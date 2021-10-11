@@ -13,21 +13,24 @@ class FriendFragment : BaseFragment<FriendFragmentBinding, FriendViewModel>() {
     override fun initViews() {
         myPagerAdapter = FriendPagerAdapter(requireActivity())
         binding!!.vpFriend.adapter = myPagerAdapter
-        TabLayoutMediator(binding!!.tlFriend,binding!!.vpFriend, object : TabLayoutMediator.TabConfigurationStrategy {
-            override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
-                when(position){
-                    0 -> tab.text = "Bạn bè"
-                    1 -> tab.text = "Tất cả"
-                    2 -> tab.text = "Yêu cầu"
+        TabLayoutMediator(
+            binding!!.tlFriend,
+            binding!!.vpFriend,
+            object : TabLayoutMediator.TabConfigurationStrategy {
+                override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
+                    when (position) {
+                        0 -> tab.text = "Bạn bè"
+                        1 -> tab.text = "Tất cả"
+                        2 -> tab.text = "Yêu cầu"
+                    }
                 }
-            }
 
-        }).attach()
-        binding!!.layoutSearchMessage.tvTitleSearch.setHint("Tìm kiếm bạn bè")
+            }).attach()
+        binding!!.layoutSearchMessage.tvTitleSearch.hint = "Tìm kiếm bạn bè"
 
     }
 
-    override fun initBinding(mRootView: View): FriendFragmentBinding? {
+    override fun initBinding(mRootView: View): FriendFragmentBinding {
         return FriendFragmentBinding.bind(mRootView)
     }
 

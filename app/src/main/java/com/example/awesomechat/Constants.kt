@@ -35,6 +35,7 @@ object BundleKey {
 }
 
 object KeyFileShare {
+     const val KEY_ID_USER="KEY_ID_USER"
      const val KEY_EMAIL = "KEY_EMAIL"
      const val FILE_NAME = "file_shared"
 }

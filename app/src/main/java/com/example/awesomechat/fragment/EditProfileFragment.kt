@@ -4,27 +4,26 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.icu.number.NumberFormatter.with
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.lifecycle.Observer
+import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
 import com.example.awesomechat.KeyFileShare
 import com.example.awesomechat.R
 import com.example.awesomechat.databinding.EditProfileFragmentBinding
-import com.example.awesomechat.model.Users
 import com.example.awesomechat.viewmodel.EditProfileViewModel
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +39,25 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
     private lateinit var edtPhone : AppCompatEditText
     private lateinit var edtDate : AppCompatEditText
 
+    val mActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(),
+        object :  ActivityResultCallback<ActivityResult> {
+            override fun onActivityResult(result: ActivityResult?) {
+                if(result!!.resultCode == RESULT_OK){
+                     val intent = result.data
+                     if(intent == null){
+                         return
+                     }
+                    uriImage = intent.data!!
+                    try {
+                        Glide.with(requireContext()).load(uriImage.toString()).into(binding!!.ivProfile)
+
+                    }catch (e : Exception){
+                        e.printStackTrace()
+                    }
+                }
+            }
+        })
+
     override fun initViews() {
         auth = FirebaseAuth.getInstance()
         mViewModel!!.loadAllUsers()
@@ -48,14 +66,54 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
          edtPhone = findViewById<AppCompatEditText>(R.id.edt_phone)!!
          edtDate = findViewById<AppCompatEditText>(R.id.edt_date)!!
         binding!!.ivProfile.setOnClickListener(View.OnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("image/*")
-            startActivityForResult(intent,REQUEST_CODE)
+            onClickSelectPicture()
         })
         binding!!.tvSave.setOnClickListener(View.OnClickListener {
-            saveDataEdit(edtName.text.toString(),edtPhone.text.toString(),edtDate.text.toString() );
+            updateDataUser()
+           // saveDataEdit(edtName.text.toString(),edtPhone.text.toString(),edtDate.text.toString() );
         })
-       setProfileUser()
+        getUserInformation()
+    }
+
+    private fun updateDataUser() {
+        val user = auth.currentUser
+
+        val profileUpdates = UserProfileChangeRequest.Builder().setDisplayName(binding!!.edtName.text.toString())
+            .setPhotoUri(uriImage).build()
+
+        user!!.updateProfile(profileUpdates)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+    }
+
+    private fun onClickSelectPicture() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+               requireContext(),
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions( //Method of Fragment
+                arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                REQUEST_CODE
+            )
+        } else {
+            openGallery()
+        }
+    }
+
+    private fun openGallery() {
+        val intent = Intent()
+        intent.setType("image/*")
+        intent.setAction(Intent.ACTION_GET_CONTENT)
+        mActivityResultLauncher.launch(Intent.createChooser(intent,"Select Picture"))
     }
 
     fun getPref(key: String?): String? {
@@ -64,19 +122,24 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
         return pref.getString(key, null)
     }
 
-    private fun setProfileUser() {
-        mViewModel!!.listUsers.observe(viewLifecycleOwner, Observer {
-            it.forEach{
-                if(it.mail.equals(getPref(KeyFileShare.KEY_EMAIL))){
-                    Glide.with(requireContext()).load(it.profileImage.toString()).into(binding!!.ivProfile)
-                    binding!!.edtName.setText(it.userName.toString())
-                    binding!!.edtDate.setText(it.date.toString())
-                    binding!!.edtPhone.setText(it.phone.toString())
-                }
-            }
-        })
-    }
+    private fun getUserInformation(){
+        val user = FirebaseAuth.getInstance().currentUser
+        if(user == null){
+            return
+        }
+        user.let {
+            // Name, email address, and profile photo Url
+            val name = user.displayName
+            val email = user.email
+            val photoUrl = user.photoUrl
+            val phone = user.phoneNumber
+            Glide.with(requireContext()).load(photoUrl).into(binding!!.ivProfile)
+            binding!!.edtName.setText(name.toString())
+            binding!!.edtPhone.setText(email.toString())
+            // Check if user's email is verified
+        }
 
+    }
 
     private fun saveDataEdit(edtName: String, edtPhone: String, edtDate: String) {
         if (TextUtils.isEmpty(edtName)) {
@@ -122,13 +185,28 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
 //        })
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==REQUEST_CODE && resultCode==RESULT_OK && data!= null){
-            uriImage = data.data!!
-            binding!!.ivProfile.setImageURI(uriImage)
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            REQUEST_CODE -> {
+                // If request is cancelled, the result arrays are empty.
+                if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // Permission is granted. Continue the action or workflow
+                    // in your app.
+                    openGallery()
+                } else return
+            }
+
         }
     }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if(requestCode==REQUEST_CODE && resultCode==RESULT_OK && data!= null){
+//            uriImage = data.data!!
+//            binding!!.ivProfile.setImageURI(uriImage)
+//        }
+//    }
 
     override fun initBinding(mRootView: View): EditProfileFragmentBinding {
         return EditProfileFragmentBinding.bind(mRootView)
@@ -141,6 +219,5 @@ class EditProfileFragment :  BaseFragment<EditProfileFragmentBinding, EditProfil
     override fun getLayoutId(): Int {
         return R.layout.edit_profile_fragment
     }
-
 
 }

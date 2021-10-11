@@ -1,11 +1,6 @@
 package com.example.awesomechat.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import com.example.awesomechat.model.Users
-import com.google.firebase.database.*
-
-class EditProfileViewModel : BaseViewModel(){
+class EditProfileViewModel : BaseViewModel() {
 //    var listUsers : MutableLiveData<ArrayList<Users>> = MutableLiveData()
 //    private lateinit var dataRef : DatabaseReference
 //    fun loadAllUsers() {

@@ -1,27 +1,23 @@
 package com.example.awesomechat.fragment
 
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-
 import com.example.awesomechat.viewmodel.BaseViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment(), View.OnClickListener{
+abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment(),
+    View.OnClickListener {
     lateinit var mContext: Context
     lateinit var mRootView: View
     var mData: Any? = null
-    protected var mViewModel: V ? =  null
-    protected var binding: K? = null
+    protected lateinit var mViewModel: V
+    protected lateinit var binding: K
 
     companion object {
         const val SYS_ERROR: String = "Có lỗi xảy ra!"
@@ -66,7 +62,7 @@ abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment()
 
     abstract fun initViews()
 
-    abstract fun initBinding(mRootView: View): K?
+    abstract fun initBinding(mRootView: View): K
 
     abstract fun getViewModelClass(): Class<V>
 

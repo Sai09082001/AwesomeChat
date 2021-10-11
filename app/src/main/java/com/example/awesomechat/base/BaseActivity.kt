@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 
 abstract class BaseActivity<BD : ViewDataBinding , VM : BaseViewModel> : AppCompatActivity() {
-    protected var binding: BD? = null
+    protected lateinit var binding: BD
     private lateinit var mViewModel: VM
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ abstract class BaseActivity<BD : ViewDataBinding , VM : BaseViewModel> : AppComp
 
     abstract fun initViews()
 
-    abstract fun initBinding(rootView: View): BD?
+    abstract fun initBinding(rootView: View): BD
 
     abstract fun getLayoutId(): Int
 

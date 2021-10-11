@@ -2,25 +2,15 @@ package com.example.awesomechat.fragment
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
-import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.awesomechat.KeyFileShare
 import com.example.awesomechat.R
-import com.example.awesomechat.adapter.FriendPagerAdapter
 import com.example.awesomechat.adapter.HomePagerAdapter
 import com.example.awesomechat.databinding.HomeMessageFragmentBinding
 import com.example.awesomechat.viewmodel.HomeMessageViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,22 +19,24 @@ class HomeMessageFragment : BaseFragment<HomeMessageFragmentBinding, HomeMessage
     override fun initViews() {
         homePagerAdapter = HomePagerAdapter(requireActivity())
         binding!!.vpHomeMessage.adapter = homePagerAdapter
-        binding!!.vpHomeMessage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding!!.vpHomeMessage.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                when(position){
-                    0 -> binding!!.layoutBottomBar.menu.findItem(R.id.menu_message).setChecked(true)
-                    1 -> binding!!.layoutBottomBar.menu.findItem(R.id.menu_friend).setChecked(true)
-                    2 -> binding!!.layoutBottomBar.menu.findItem(R.id.menu_my_page).setChecked(true)
+                when (position) {
+                    0 -> binding!!.layoutBottomBar.menu.findItem(R.id.menu_message).isChecked = true
+                    1 -> binding!!.layoutBottomBar.menu.findItem(R.id.menu_friend).isChecked = true
+                    2 -> binding!!.layoutBottomBar.menu.findItem(R.id.menu_my_page).isChecked = true
                 }
             }
         })
-        binding!!.layoutBottomBar.setOnItemSelectedListener(object : NavigationBarView.OnItemSelectedListener {
+        binding!!.layoutBottomBar.setOnItemSelectedListener(object :
+            NavigationBarView.OnItemSelectedListener {
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
-                when(item.itemId){
-                    R.id.menu_message -> binding!!.vpHomeMessage.setCurrentItem(0)
-                    R.id.menu_friend -> binding!!.vpHomeMessage.setCurrentItem(1)
-                    R.id.menu_my_page -> binding!!.vpHomeMessage.setCurrentItem(2)
+                when (item.itemId) {
+                    R.id.menu_message -> binding!!.vpHomeMessage.currentItem = 0
+                    R.id.menu_friend -> binding!!.vpHomeMessage.currentItem = 1
+                    R.id.menu_my_page -> binding!!.vpHomeMessage.currentItem = 2
                 }
                 return true
             }
@@ -76,7 +68,7 @@ class HomeMessageFragment : BaseFragment<HomeMessageFragmentBinding, HomeMessage
         return pref.getString(key, null)
     }
 
-    override fun initBinding(mRootView: View): HomeMessageFragmentBinding? {
+    override fun initBinding(mRootView: View): HomeMessageFragmentBinding {
         return HomeMessageFragmentBinding.bind(mRootView)
     }
 

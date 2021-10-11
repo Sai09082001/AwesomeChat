@@ -14,12 +14,9 @@ class Users {
     var phone : String?= null
     var profileImage : String? = null
     var isMe : String? = null
-    var listRequest : ArrayList<String>? = null
-    var message : String?= null
-    var friends : ArrayList<Users>? = null
 
     constructor(userName: String?, mail: String?,password: String?,date: String?,phone : String?
-                ,profileImage: String?,isMe : String?,listRequest: ArrayList<String>?) {
+                ,profileImage: String?,isMe : String?) {
         this.userName = userName
         this.mail = mail
         this.date = date
@@ -27,17 +24,6 @@ class Users {
         this.phone = phone
         this.isMe = isMe
         this.profileImage = profileImage
-        this.listRequest = listRequest
-    }
-
-    constructor(userName: String?, mail: String?, password: String?,profileImage: String?,listRequest: ArrayList<String>?,message : String?,friends : ArrayList<Users>?) {
-        this.userName = userName
-        this.mail = mail
-        this.password = password
-        this.profileImage = profileImage
-        this.listRequest = listRequest
-        this.message = message
-        this.friends = friends
     }
 
     override fun toString(): String {
