@@ -6,10 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
-import androidx.viewbinding.ViewBinding
-import com.example.awesomechat.viewmodel.BaseViewModel
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 abstract class BaseActivity<BD : ViewDataBinding , VM : BaseViewModel> : AppCompatActivity() {

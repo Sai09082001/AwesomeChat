@@ -3,7 +3,10 @@ package com.example.awesomechat.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.awesomechat.fragment.*
+import com.example.awesomechat.friend.FriendFragment
+import com.example.awesomechat.homemessage.HomeMessageFragment
+import com.example.awesomechat.message.MessageFragment
+import com.example.awesomechat.mypage.MyPageFragment
 
 class HomePagerAdapter (fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
         override fun createFragment(position: Int): Fragment {
