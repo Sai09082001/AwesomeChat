@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.awesomechat.splash.SplashFragment"
+        android:name="com.example.awesomechat.ui.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/splash_fragment">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.awesomechat.register.RegisterFragment"
+        android:name="com.example.awesomechat.ui.register.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/register_fragment">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.awesomechat.login.LoginFragment"
+        android:name="com.example.awesomechat.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/login_fragment" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeMessageFragment"
-        android:name="com.example.awesomechat.homemessage.HomeMessageFragment"
+        android:name="com.example.awesomechat.ui.homemessage.HomeMessageFragment"
         android:label="HomeMessageFragment"
         tools:layout="@layout/home_message_fragment" >
 
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
-        android:name="com.example.awesomechat.mypage.MyPageFragment"
+        android:name="com.example.awesomechat.ui.mypage.MyPageFragment"
         android:label="MyPageFragment"
         tools:layout="@layout/my_page_fragment" >
 
@@ -60,14 +60,14 @@
     </fragment>
     <fragment
         android:id="@+id/friendFragment"
-        android:name="com.example.awesomechat.friend.FriendFragment"
+        android:name="com.example.awesomechat.ui.friend.FriendFragment"
         android:label="FriendFragment"
         tools:layout="@layout/friend_fragment" >
 
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.awesomechat.editprofile.EditProfileFragment"
+        android:name="com.example.awesomechat.ui.editprofile.EditProfileFragment"
         android:label="EditProfileFragment"
         tools:layout="@layout/edit_profile_fragment" >
 
