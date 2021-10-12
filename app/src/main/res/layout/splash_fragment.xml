@@ -25,18 +25,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="Awesome"
+                android:text="@string/txt_awesome"
                 android:textColor="@color/white"
-                android:textSize="40dp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:fontFamily="sans-serif-thin"
-                android:text="chat"
+                android:text="@string/txt_chat"
                 android:textColor="@color/white"
-                android:textSize="40dp" />
+                android:textSize="@dimen/txt_40" />
         </TableRow>
 
     </LinearLayout>

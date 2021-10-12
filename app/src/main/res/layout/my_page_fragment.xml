@@ -2,7 +2,7 @@
 <layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -14,41 +14,36 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="280dp"
+        <LinearLayout
+            android:layout_marginTop="@dimen/d_280"
             android:id="@+id/constraint_profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/custom_chat_home"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:orientation="vertical">
 
             <FrameLayout
                 android:id="@+id/frame_avatar_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginStart="@dimen/d_16"
+                android:layout_marginTop="@dimen/d_24"
+                android:layout_marginEnd="@dimen/d_16">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_profile"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
+                    android:layout_width="@dimen/d_56"
+                    android:layout_height="@dimen/d_56"
                     android:src="@drawable/ic_avatar_small"
                     app:layout_constraintStart_toEndOf="@+id/iv_back"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_name"
-                    android:text="Awesome Chat"
-                    android:textSize="18sp"
+                    android:text="@string/txt_awesome_chat"
+                    android:textSize="@dimen/txt_18"
                     android:fontFamily="sans-serif-medium"
-                    android:layout_marginStart="64dp"
+                    android:layout_marginStart="@dimen/d_64"
                     android:layout_gravity="start|top"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
@@ -56,13 +51,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_gmail"
-                    android:text="awesomechat@gmail.com"
-                    android:textSize="16sp"
+                    android:text="@string/txt_awesomechat_gmail"
+                    android:textSize="@dimen/txt_16"
                     android:fontFamily="sans-serif"
-                    android:layout_marginStart="64dp"
+                    android:layout_marginStart="@dimen/d_64"
                     android:layout_gravity="start|top"
                     android:textColor="@color/gray"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="@dimen/d_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -71,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="@dimen/d_24"
                     android:src="@drawable/ic_edit" />
 
             </FrameLayout>
@@ -79,9 +74,9 @@
                 android:id="@+id/frame_language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/d_16"
+                android:layout_marginTop="@dimen/d_24"
+                android:layout_marginEnd="@dimen/d_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frame_avatar_page">
 
@@ -93,22 +88,22 @@
                     android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:text="Ngôn ngữ"
-                    android:textSize="18sp"
+                    android:text="@string/txt_ngon_ngu"
+                    android:textSize="@dimen/txt_18"
                     android:fontFamily="sans-serif"
                     android:layout_gravity="start|center"
                     android:textColor="@color/black"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/d_40"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:text="Tiếng Việt"
-                    android:textSize="18sp"
+                    android:text="@string/txt_tieng_viet"
+                    android:textSize="@dimen/txt_18"
                     android:fontFamily="sans-serif"
                     android:layout_gravity="end|center"
                     android:textColor="@color/gray"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="@dimen/d_20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <androidx.appcompat.widget.AppCompatImageView
@@ -122,9 +117,9 @@
                 android:id="@+id/frame_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/d_16"
+                android:layout_marginTop="@dimen/d_24"
+                android:layout_marginEnd="@dimen/d_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frame_language">
 
@@ -136,12 +131,12 @@
                     android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:text="Thông báo"
-                    android:textSize="18sp"
+                    android:text="@string/txt_thong_bao"
+                    android:textSize="@dimen/txt_18"
                     android:fontFamily="sans-serif"
                     android:layout_gravity="start|center"
                     android:textColor="@color/black"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/d_40"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -156,9 +151,9 @@
                 android:id="@+id/frame_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/d_16"
+                android:layout_marginTop="@dimen/d_24"
+                android:layout_marginEnd="@dimen/d_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frame_notice">
 
@@ -170,32 +165,32 @@
                     android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:text="Phiên bản ứng dụng"
-                    android:textSize="18sp"
+                    android:text="@string/txt_version_app"
+                    android:textSize="@dimen/txt_18"
                     android:fontFamily="sans-serif"
                     android:layout_gravity="start|center"
                     android:textColor="@color/black"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/d_40"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/txt_18"
                     android:fontFamily="sans-serif"
                     android:textColor="@color/gray"
                     android:layout_gravity="end|center"
-                    android:text="1.0.0" />
+                    android:text="@string/version_1_0_0" />
 
             </FrameLayout>
             <FrameLayout
                 android:id="@+id/frame_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/d_16"
+                android:layout_marginTop="@dimen/d_24"
+                android:layout_marginEnd="@dimen/d_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frame_version">
 
@@ -208,17 +203,17 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_logout"
-                    android:text="Đăng xuất"
-                    android:textSize="18sp"
+                    android:text="@string/txt_logout"
+                    android:textSize="@dimen/txt_18"
                     android:fontFamily="sans-serif"
                     android:layout_gravity="start|center"
                     android:textColor="@color/red"
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="@dimen/d_40"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
             </FrameLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </FrameLayout>
 </layout>

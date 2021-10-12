@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="d_12">12dp</dimen>
+    <dimen name="d_8">8dp</dimen>
+    <dimen name="d_16">16dp</dimen>
+    <dimen name="txt_16">16sp</dimen>
+    <dimen name="d_64">64dp</dimen>
+    <dimen name="d_36">36dp</dimen>
+    <dimen name="d_24">24dp</dimen>
+    <dimen name="txt_24">24sp</dimen>
+    <dimen name="d_40">40dp</dimen>
+    <dimen name="d_6">6dp</dimen>
+    <dimen name="txt_20">20sp</dimen>
+    <dimen name="d_20">20dp</dimen>
+    <dimen name="txt_18">18sp</dimen>
+    <dimen name="d_90">90dp</dimen>
+    <dimen name="txt_14">14sp</dimen>
+    <dimen name="txt_40">40sp</dimen>
+    <dimen name="d_60">60dp</dimen>
+    <dimen name="d_4">4dp</dimen>
+    <dimen name="d_50">50dp</dimen>
+    <dimen name="d_28">28dp</dimen>
+    <dimen name="d_10">10dp</dimen>
+    <dimen name="d_42">42dp</dimen>
+    <dimen name="d_80">80dp</dimen>
+    <dimen name="txt_36">36sp</dimen>
+    <dimen name="d_44">44dp</dimen>
+    <dimen name="d_200">200dp</dimen>
+    <dimen name="d_280">280dp</dimen>
+    <dimen name="d_56">56dp</dimen>
+    <dimen name="d_120">120dp</dimen>
+    <dimen name="d_142">142dp</dimen>
+</resources>

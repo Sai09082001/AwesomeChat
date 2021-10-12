@@ -1,8 +1,15 @@
 package com.example.awesomechat.ui.editprofile
 
+import android.content.Context
 import com.example.awesomechat.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class EditProfileViewModel : BaseViewModel() {
+@HiltViewModel
+class EditProfileViewModel @Inject constructor(
+    @ApplicationContext context: Context
+) : BaseViewModel() {
 //    var listUsers : MutableLiveData<ArrayList<Users>> = MutableLiveData()
 //    private lateinit var dataRef : DatabaseReference
 //    fun loadAllUsers() {

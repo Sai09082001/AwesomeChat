@@ -29,35 +29,22 @@ class LoginFragment : BaseFragment<LoginFragmentBinding>() {
                 appNavigation.openLoginToHomeScreen()
             }
         }
+
         binding.tvLogin.setOnClickListener {
             // check chuyển sang viewModel
-
-            val email = binding.edtYourEmail.text.toString()
-            val pass = binding.edtYourPassword.text.toString()
-            viewModel.doUserLogin(email, pass)
-
-
-//            if (edtEmail.text.toString().isEmpty()) {
-//                Toast.makeText(context, "email is required", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            if (edtPassword.text.toString().isEmpty()) {
-//                Toast.makeText(context, "password is required", Toast.LENGTH_SHORT).show()
-//            }
-//            if (!edtEmail.text.toString().isEmpty() && !edtPassword.text.toString().isEmpty()) {
-//                mViewModel.doUserLogin(edtEmail.text.toString(), edtPassword.text.toString())
-//                mViewModel.stateLogin.observe(this, Observer {
-//                    if (it) {
-//                        appNavigation.openLoginToHomeScreen()
-//                    } else {
-//                        Toast.makeText(context, "Email or password not true", Toast.LENGTH_SHORT)
-//                            .show()
-//                    }
-//                })
-//            }
+            viewModel.doUserLogin(binding.edtYourEmail.text.toString(), binding.edtYourPassword.text.toString())
 
         }
 
+        viewModel.pass_Email_Valid.observe(viewLifecycleOwner){
+            if(it){
+                binding.tvLogin.isEnabled = true
+                binding.tvLogin.setBackgroundResource(R.drawable.custom_friend_request)
+            }else {
+                binding.tvLogin.isEnabled = false
+                binding.tvLogin.setBackgroundResource(R.drawable.custom_button_login)
+            }
+        }
         viewModel.stateLogin.observe(viewLifecycleOwner) {
             if (it) {
                 appNavigation.openLoginToHomeScreen()

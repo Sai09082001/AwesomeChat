@@ -20,38 +20,26 @@ class RegisterFragment : BaseFragment<RegisterFragmentBinding>() {
 
     override fun initViews() {
         binding.tvRegister.setOnClickListener(View.OnClickListener {
-            val userName = binding.edtNameRegis.text.toString()
-            val email = binding.edtEmailRegis.text.toString()
-            val password = binding.edtPasswordRegis.text.toString()
-            viewModel.setUserName(userName)
-            viewModel.doUserRegister(email, password)
-//            if (TextUtils.isEmpty(userName)) {
-//                Toast.makeText(context, "username is required", Toast.LENGTH_SHORT).show()
-//            }
-//            if (TextUtils.isEmpty(email)) {
-//                Toast.makeText(context, "email is required", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            if (TextUtils.isEmpty(password)) {
-//                Toast.makeText(context, "password is required", Toast.LENGTH_SHORT).show()
-//            }
-//            Toast.makeText(context, "oki", Toast.LENGTH_SHORT).show()
-//            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
-//                OnCompleteListener {
-//                    if (it.isSuccessful) {
-//                        NavHostFragment.findNavController(this).navigate(R.id.loginFragment)
-//                    }
-//                })
-
+            viewModel.doUserRegister(binding.edtEmailRegis.text.toString(), binding.edtPasswordRegis.text.toString())
         })
         viewModel.stateRegister.observe(viewLifecycleOwner){
             if(it){
+                viewModel.setUserName(binding.edtNameRegis.text.toString())
                 appNavigation.openRegisterToLoginScreen()
-            }
+            }else Toast.makeText(context,"Fail",Toast.LENGTH_SHORT).show()
         }
         binding.tvLoginNow.setOnClickListener(View.OnClickListener {
             appNavigation.openRegisterToLoginScreen()
         })
+        viewModel.pass_Email_Valid.observe(viewLifecycleOwner){
+            if(it){
+                binding.tvRegister.isEnabled = true
+                binding.tvRegister.setBackgroundResource(R.drawable.custom_friend_request)
+            }else {
+                binding.tvRegister.isEnabled = false
+                binding.tvRegister.setBackgroundResource(R.drawable.custom_button_login)
+            }
+        }
     }
 
     override fun initBinding(mRootView: View): RegisterFragmentBinding {

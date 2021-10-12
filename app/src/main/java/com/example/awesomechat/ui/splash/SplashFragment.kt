@@ -15,6 +15,7 @@ import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.SplashFragmentBinding
 import com.example.awesomechat.navigation.AppNavigation
 import com.example.awesomechat.ui.homemessage.HomeMessageViewModel
+import com.example.awesomechat.ui.register.RegisterViewModel
 import com.example.awesomechat.utils.KeyFileShare.FILE_NAME
 import com.example.awesomechat.utils.KeyFileShare.KEY_EMAIL
 import com.google.firebase.auth.FirebaseAuth
@@ -31,18 +32,13 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>() {
     lateinit var appNavigation: AppNavigation
 
     override fun initViews() {
-        handleSplashScreen()
-    }
-    fun handleSplashScreen(){
-        Handler(Looper.getMainLooper()).postDelayed({
-            appNavigation.openSplashToLoginScreen()
-        }, 2000)
-    }
-
-    fun getPref(key: String?): String? {
-        val pref: SharedPreferences = requireContext()
-            .getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-        return pref.getString(key, null)
+        viewModel.stateSplash.observe(viewLifecycleOwner){
+            if(it){
+                Handler(Looper.getMainLooper()).postDelayed({
+                    appNavigation.openSplashToLoginScreen()
+                }, 2000)
+            }
+        }
     }
 
     override fun initBinding(mRootView: View): SplashFragmentBinding {
@@ -53,8 +49,7 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>() {
         return R.layout.splash_fragment
     }
 
-    override fun getVM(): ViewModel {
-        TODO("Not yet implemented")
-    }
+    override fun getVM(): SplashViewModel = viewModel
+    val viewModel: SplashViewModel by viewModels()
 
 }

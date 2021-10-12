@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener
 class AllUsersAdapter(val context : Context, var listUsers :ArrayList<Users>) :
     RecyclerView.Adapter<AllUsersAdapter.AllUsersHolder>(){
 
+
     class AllUsersHolder(view: View) : RecyclerView.ViewHolder(view) {
         var binding: ItemUserBinding = ItemUserBinding.bind(view)
         init {

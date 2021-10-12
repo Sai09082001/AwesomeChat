@@ -21,19 +21,19 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="40dp"
-            android:text="Tin nhắn"
+            android:layout_marginStart="@dimen/d_12"
+            android:layout_marginTop="@dimen/d_40"
+            android:text="@string/txt_message"
             android:textColor="@color/white"
-            android:textSize="36sp"
+            android:textSize="@dimen/txt_36"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginTop="@dimen/d_44"
+            android:layout_marginEnd="@dimen/d_12"
             android:src="@drawable/ic_new_message"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,26 +43,21 @@
             layout="@layout/search_message_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/d_12"
+            android:layout_marginTop="@dimen/d_24"
+            android:layout_marginEnd="@dimen/d_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="200dp"
-            android:background="@drawable/custom_chat_home"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent">
-
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingTop="@dimen/d_6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                android:layout_marginTop="@dimen/d_200"
+                android:background="@drawable/custom_chat_home"
                 android:id="@+id/rv_message"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

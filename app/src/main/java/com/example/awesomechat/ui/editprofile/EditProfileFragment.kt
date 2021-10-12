@@ -45,10 +45,7 @@ class EditProfileFragment : BaseFragment<EditProfileFragmentBinding>() {
             object : ActivityResultCallback<ActivityResult> {
                 override fun onActivityResult(result: ActivityResult?) {
                     if (result!!.resultCode == RESULT_OK) {
-                        val intent = result.data
-                        if (intent == null) {
-                            return
-                        }
+                        val intent = result.data ?: return
                         uriImage = intent.data!!
                         try {
                             Glide.with(requireContext()).load(uriImage.toString())

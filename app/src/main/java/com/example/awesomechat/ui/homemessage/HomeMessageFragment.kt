@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.HomeMessageFragmentBinding
-import com.example.awesomechat.ui.editprofile.EditProfileViewModel
 import com.example.awesomechat.utils.KeyFileShare
 import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,42 +42,20 @@ class HomeMessageFragment : BaseFragment<HomeMessageFragmentBinding>() {
             }
 
         })
-//        val dataRef = FirebaseDatabase.getInstance().reference.child("Users")
-//        dataRef.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                for (postSnapshot in dataSnapshot.children) {
-//                    if(postSnapshot.child("email").value!!.equals(getPref(KeyFileShare.KEY_EMAIL))){
-//                        dataRef.child(postSnapshot.key.toString()).child("me").setValue("me")
-//                    }else{
-//                        dataRef.child(postSnapshot.key.toString()).child("me").setValue("user")
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                // Getting Post failed, log a message
-//                Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
-//                // ...
-//            }
-//        })
-    }
 
+    }
     fun getPref(key: String?): String? {
         val pref: SharedPreferences = requireContext()
             .getSharedPreferences(KeyFileShare.FILE_NAME, Context.MODE_PRIVATE)
         return pref.getString(key, null)
     }
 
+    override fun getVM(): HomeMessageViewModel = viewModel
+    val viewModel: HomeMessageViewModel by viewModels()
+
     override fun initBinding(mRootView: View): HomeMessageFragmentBinding {
         return HomeMessageFragmentBinding.bind(mRootView)
     }
 
-
-    override fun getLayoutId(): Int {
-        return R.layout.home_message_fragment
-    }
-
-    override fun getVM(): HomeMessageViewModel = viewModel
-    val viewModel: HomeMessageViewModel by viewModels()
-
+    override fun getLayoutId(): Int = R.layout.home_message_fragment
 }

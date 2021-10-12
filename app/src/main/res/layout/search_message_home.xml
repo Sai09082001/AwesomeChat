@@ -10,15 +10,15 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:src="@drawable/ic_search"
-        android:padding="12dp"
-        android:layout_marginStart="8dp"
+        android:padding="@dimen/d_12"
+        android:layout_marginStart="@dimen/d_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/tv_title_search"
-        android:hint="Tìm kiếm tin nhắn"
+        android:hint="@string/txt_search_message"
         android:background="@android:color/transparent"
-        android:textSize="16sp"
+        android:textSize="@dimen/txt_16"
         android:textColor="@color/gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

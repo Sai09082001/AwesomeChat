@@ -15,14 +15,13 @@ import com.google.firebase.auth.FirebaseUser
 
 
 class AllUsersFragment : BaseFragment<AllUsersFragmentBinding>() {
-    private lateinit var auth: FirebaseAuth
+    private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var userAdapter: AllUsersAdapter
 
     override fun initViews() {
         Toast.makeText(context, "All Users Fragment", Toast.LENGTH_SHORT).show()
 
-        auth = FirebaseAuth.getInstance()
         firebaseUser = auth.currentUser!!
 
         binding.rvAllUsers.layoutManager = LinearLayoutManager(context)

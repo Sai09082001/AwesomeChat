@@ -10,4 +10,7 @@
     <color name="gray">#615D5D</color>
     <color name="red">#F02F21</color>
     <color name="blue">#3678F4</color>
+    <color name="color_blue_txt">#4356B4</color>
+    <color name="color_gray_edt">#676767</color>
+
 </resources>

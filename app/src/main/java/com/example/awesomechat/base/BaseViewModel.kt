@@ -8,8 +8,6 @@ import com.google.firebase.database.*
 
 abstract class BaseViewModel : ViewModel() {
 
-
-
     var listUsers: MutableLiveData<ArrayList<Users>> = MutableLiveData()
     private lateinit var dataRef: DatabaseReference
     fun loadAllUsers() {

@@ -19,9 +19,7 @@ class MyFriendFragment : BaseFragment<MyFriendFragmentBinding>() {
 
     val viewModel: MyFriendViewModel by viewModels()
 
-    override fun getLayoutId(): Int {
-        return R.layout.my_friend_fragment
-    }
+    override fun getLayoutId(): Int = R.layout.my_friend_fragment
 
     override fun getVM(): MyFriendViewModel= viewModel
 }

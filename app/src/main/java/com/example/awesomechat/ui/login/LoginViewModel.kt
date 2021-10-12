@@ -1,22 +1,22 @@
 package com.example.awesomechat.ui.login
 
-import android.util.Log
+import android.content.Context
 import android.util.Patterns
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.fragment.NavHostFragment
-import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseViewModel
 import com.example.awesomechat.utils.SingleLiveEvent
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
-import kotlin.coroutines.coroutineContext
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(): BaseViewModel(){
+class LoginViewModel @Inject constructor(
+    @ApplicationContext private val context: Context
+) : BaseViewModel() {
 
+    val pass_Email_Valid = MutableLiveData<Boolean>()
     val navigateLogin = SingleLiveEvent<Boolean>()
     val stateLogin = MutableLiveData<Boolean>()
 
@@ -26,38 +26,40 @@ class LoginViewModel @Inject constructor(): BaseViewModel(){
         navigateLogin.value = checkUserValid()
     }
 
-    fun checkUserValid() : Boolean{
-        if(auth.currentUser != null){
-            return  true
-        }else return false
+    fun checkUserValid(): Boolean {
+        return auth.currentUser != null
     }
-     fun doUserLogin(email: String, password: String) {
-         // yêu cầu validate email và pass (trong sheet)
-         if (validate(email, password)) {
-             auth.signInWithEmailAndPassword(email, password)
-                 .addOnCompleteListener {
-                     stateLogin.value = it.isSuccessful
-                 }
-                 .addOnFailureListener {
-                     // xử lý nếu email, password sai, hoặc mất mạng
-                     Log.i("KMFG", "Network is avaible")
-                 }
-         } else {
-             // validate sai
-         }
+
+    fun doUserLogin(email: String, password: String) {
+        // yêu cầu validate email và pass (trong sheet)
+        if (validate(email, password)) {
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener {
+                    stateLogin.value = it.isSuccessful
+                }
+                .addOnFailureListener {
+                    // xử lý nếu email, password sai, hoặc mất mạng
+                    Toast.makeText(context, "Network not avaible", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            // validate sai
+            Toast.makeText(context, "Email not validate", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun isEmailValid(email: CharSequence?): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    private fun validate(email: String, password: String): Boolean {
-        if (email.isEmpty() || password.isEmpty()){
+     fun validate(email: String, password: String): Boolean {
+        if (email.isEmpty() || password.isEmpty() || password.length < 4) {
+            Toast.makeText(context, "Email not validate", Toast.LENGTH_SHORT).show()
+            pass_Email_Valid.value = false
             return false
-        }
-        else if(isEmailValid(email)){
+        } else if (isEmailValid(email) && password.length>= 4) {
+            pass_Email_Valid.value = true
             return true
-        }
-        else return true
+        } else
+            return true
     }
 }
