@@ -11,6 +11,8 @@
         android:label="SplashFragment"
         tools:layout="@layout/splash_fragment">
         <action
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/splashFragment"
             android:id="@+id/action_splash_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
@@ -19,12 +21,19 @@
         android:name="com.example.awesomechat.ui.register.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/register_fragment"/>
+    <action
+        app:popUpTo="@id/registerFragment"
+        app:popUpToInclusive="true"
+        android:id="@+id/action_register_to_loginFragment"
+        app:destination="@id/loginFragment" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.awesomechat.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/login_fragment" >
         <action
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_login_to_homeMessageFragment"
             app:destination="@id/homeMessageFragment" />
         <action

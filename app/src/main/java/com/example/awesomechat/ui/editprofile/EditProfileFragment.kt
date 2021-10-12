@@ -15,6 +15,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
@@ -28,7 +29,7 @@ import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EditProfileFragment : BaseFragment<EditProfileFragmentBinding, EditProfileViewModel>() {
+class EditProfileFragment : BaseFragment<EditProfileFragmentBinding>() {
     private val REQUEST_CODE: Int = 101
     private lateinit var uriImage: Uri
     private lateinit var auth: FirebaseAuth
@@ -62,11 +63,11 @@ class EditProfileFragment : BaseFragment<EditProfileFragmentBinding, EditProfile
 
     override fun initViews() {
         auth = FirebaseAuth.getInstance()
-        mViewModel.loadAllUsers()
+        viewModel.loadAllUsers()
         dataRef = FirebaseDatabase.getInstance().reference.child("Users")
-        edtName = findViewById<AppCompatEditText>(R.id.edt_name)!!
-        edtPhone = findViewById<AppCompatEditText>(R.id.edt_phone)!!
-        edtDate = findViewById<AppCompatEditText>(R.id.edt_date)!!
+//        edtName = findViewById<AppCompatEditText>(R.id.edt_name)!!
+//        edtPhone = findViewById<AppCompatEditText>(R.id.edt_phone)!!
+//        edtDate = findViewById<AppCompatEditText>(R.id.edt_date)!!
         binding.ivProfile.setOnClickListener(View.OnClickListener {
             onClickSelectPicture()
         })
@@ -218,12 +219,14 @@ class EditProfileFragment : BaseFragment<EditProfileFragmentBinding, EditProfile
         return EditProfileFragmentBinding.bind(mRootView)
     }
 
-    override fun getViewModelClass(): Class<EditProfileViewModel> {
-        return EditProfileViewModel::class.java
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.edit_profile_fragment
     }
+
+
+    val viewModel: EditProfileViewModel by viewModels()
+
+    override fun getVM(): EditProfileViewModel = viewModel
 
 }

@@ -2,17 +2,19 @@ package com.example.awesomechat.ui.alluser
 
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.AllUsersFragmentBinding
+import com.example.awesomechat.ui.login.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 
-class AllUsersFragment : BaseFragment<AllUsersFragmentBinding, AllUsersViewModel>() {
+class AllUsersFragment : BaseFragment<AllUsersFragmentBinding>() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var userAdapter: AllUsersAdapter
@@ -30,8 +32,8 @@ class AllUsersFragment : BaseFragment<AllUsersFragmentBinding, AllUsersViewModel
     }
 
     private fun subcriData() {
-        mViewModel.loadAllUsers()
-        mViewModel.listUsers.observe(viewLifecycleOwner, Observer {
+        viewModel.loadAllUsers()
+        viewModel.listUsers.observe(viewLifecycleOwner, Observer {
             // listUsers.addAll(mViewModel!!.listUsers.value!!)
             it.let {
                 userAdapter = AllUsersAdapter(requireContext(), it)
@@ -72,11 +74,12 @@ class AllUsersFragment : BaseFragment<AllUsersFragmentBinding, AllUsersViewModel
         return AllUsersFragmentBinding.bind(mRootView)
     }
 
-    override fun getViewModelClass(): Class<AllUsersViewModel> {
-        return AllUsersViewModel::class.java
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.all_users_fragment
     }
+
+
+    val viewModel: AllUsersViewModel by viewModels()
+
+    override fun getVM(): AllUsersViewModel = viewModel
 }

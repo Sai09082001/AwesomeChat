@@ -9,6 +9,9 @@ import javax.inject.Inject
 
 @ActivityScoped
 class AppNavigatorImpl @Inject constructor() : BaseNavigatorImpl(), AppNavigation {
+    override fun openRegisterToLoginScreen(bundle: Bundle?) {
+        openScreen(R.id.action_register_to_loginFragment,bundle)
+    }
 
     override fun openSplashToLoginScreen(bundle: Bundle? ) {
         openScreen(R.id.action_splash_to_loginFragment, bundle)

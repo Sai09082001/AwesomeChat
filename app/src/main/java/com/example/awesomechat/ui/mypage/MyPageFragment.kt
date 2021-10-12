@@ -4,19 +4,21 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.Glide
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.MyPageFragmentBinding
+import com.example.awesomechat.ui.homemessage.HomeMessageViewModel
 import com.example.awesomechat.utils.KeyFileShare
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MyPageFragment : BaseFragment<MyPageFragmentBinding, MyPageViewModel>() {
+class MyPageFragment : BaseFragment<MyPageFragmentBinding>() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firebaseUser: FirebaseUser
     override fun initViews() {
@@ -40,8 +42,8 @@ class MyPageFragment : BaseFragment<MyPageFragmentBinding, MyPageViewModel>() {
     }
 
     private fun setProfileUser() {
-        Log.i("OLL", "setProfileUser: " + mViewModel.listUsers.value)
-        mViewModel.listUsers.observe(viewLifecycleOwner, Observer {
+        Log.i("OLL", "setProfileUser: " + viewModel.listUsers.value)
+        viewModel.listUsers.observe(viewLifecycleOwner, Observer {
             it.forEach {
                 if (it.mail.equals(getPref(KeyFileShare.KEY_EMAIL))) {
                     Glide.with(requireContext()).load(it.profileImage.toString())
@@ -83,10 +85,6 @@ class MyPageFragment : BaseFragment<MyPageFragmentBinding, MyPageViewModel>() {
         return MyPageFragmentBinding.bind(mRootView)
     }
 
-    override fun getViewModelClass(): Class<MyPageViewModel> {
-        return MyPageViewModel::class.java
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.my_page_fragment
     }
@@ -97,4 +95,6 @@ class MyPageFragment : BaseFragment<MyPageFragmentBinding, MyPageViewModel>() {
         pref.edit().remove(key).apply()
     }
 
+    override fun getVM(): MyPageViewModel = viewModel
+    val viewModel: MyPageViewModel by viewModels()
 }

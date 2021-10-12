@@ -4,16 +4,18 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.view.MenuItem
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.HomeMessageFragmentBinding
+import com.example.awesomechat.ui.editprofile.EditProfileViewModel
 import com.example.awesomechat.utils.KeyFileShare
 import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeMessageFragment : BaseFragment<HomeMessageFragmentBinding, HomeMessageViewModel>() {
+class HomeMessageFragment : BaseFragment<HomeMessageFragmentBinding>() {
     private lateinit var homePagerAdapter: HomePagerAdapter
     override fun initViews() {
         homePagerAdapter = HomePagerAdapter(requireActivity())
@@ -71,13 +73,12 @@ class HomeMessageFragment : BaseFragment<HomeMessageFragmentBinding, HomeMessage
         return HomeMessageFragmentBinding.bind(mRootView)
     }
 
-    override fun getViewModelClass(): Class<HomeMessageViewModel> {
-        return HomeMessageViewModel::class.java
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.home_message_fragment
     }
 
+    override fun getVM(): HomeMessageViewModel = viewModel
+    val viewModel: HomeMessageViewModel by viewModels()
 
 }

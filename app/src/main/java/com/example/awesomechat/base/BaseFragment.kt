@@ -6,32 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment(),
+abstract class BaseFragment<K : ViewDataBinding> : Fragment(),
     View.OnClickListener {
-    lateinit var mContext: Context
     lateinit var mRootView: View
     var mData: Any? = null
-    protected lateinit var mViewModel: V
     protected lateinit var binding: K
+
+    protected abstract fun getVM(): ViewModel
 
     companion object {
         const val SYS_ERROR: String = "Có lỗi xảy ra!"
-    }
-
-    fun <T : View> findViewById(id: Int): T? {
-        return findViewById(id, null)
-    }
-
-    fun <T : View> findViewById(id: Int, event: View.OnClickListener?): T? {
-        val v: T? = mRootView.findViewById(id)
-        if (event != null) {
-            v?.setOnClickListener(event)
-        }
-        return v
     }
 
     override fun onCreateView(
@@ -40,10 +30,13 @@ abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment()
         savedInstanceState: Bundle?
     ): View? {
         mRootView = inflater.inflate(getLayoutId(), container, false)
-        mViewModel = ViewModelProvider(this).get(getViewModelClass())
         binding = initBinding(mRootView)
-        initViews()
         return mRootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
     }
 
     fun showNotify(text: String) {
@@ -62,8 +55,6 @@ abstract class BaseFragment<K : ViewDataBinding, V : BaseViewModel> : Fragment()
     abstract fun initViews()
 
     abstract fun initBinding(mRootView: View): K
-
-    abstract fun getViewModelClass(): Class<V>
 
     protected abstract fun getLayoutId(): Int
 }

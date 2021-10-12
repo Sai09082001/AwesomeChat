@@ -1,13 +1,15 @@
 package com.example.awesomechat.ui.friend
 
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.FriendFragmentBinding
+import com.example.awesomechat.ui.login.LoginViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class FriendFragment : BaseFragment<FriendFragmentBinding, FriendViewModel>() {
+class FriendFragment : BaseFragment<FriendFragmentBinding>() {
     private lateinit var myPagerAdapter: FriendPagerAdapter
     override fun initViews() {
         myPagerAdapter = FriendPagerAdapter(requireActivity())
@@ -33,11 +35,12 @@ class FriendFragment : BaseFragment<FriendFragmentBinding, FriendViewModel>() {
         return FriendFragmentBinding.bind(mRootView)
     }
 
-    override fun getViewModelClass(): Class<FriendViewModel> {
-        return FriendViewModel::class.java
-    }
-
     override fun getLayoutId(): Int {
         return R.layout.friend_fragment
     }
+
+    override fun getVM(): FriendViewModel = viewModel
+
+    val viewModel: FriendViewModel by viewModels()
+
 }
