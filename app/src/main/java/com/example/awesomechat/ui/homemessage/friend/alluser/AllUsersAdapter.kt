@@ -1,4 +1,4 @@
-package com.example.awesomechat.ui.alluser
+package com.example.awesomechat.ui.homemessage.friend.alluser
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -80,8 +80,7 @@ class AllUsersAdapter(val context : Context, var listUsers :ArrayList<Users>) :
 //        }else if(!listUsers[position].listRequest.toString().equals("")){
 //            holder.binding.tvAddFriend.visibility = View.GONE
 //        }
-        holder.binding.tvEmail.text = listUsers[position].mail.toString()
-        holder.binding.tvUserName.text = listUsers[position].userName.toString()
-        Glide.with(context).load(listUsers[position].profileImage.toString()).into(holder.binding.ivProfile)
+        holder.binding.tvUserName.text = listUsers[position].userName
+        Glide.with(context).load(listUsers[position].profileImage).into(holder.binding.ivProfile)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.awesomechat.ui.myfriend
+package com.example.awesomechat.ui.homemessage.friend.myfriend
 
 import android.view.View
 import android.widget.Toast
@@ -6,7 +6,6 @@ import androidx.fragment.app.viewModels
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.MyFriendFragmentBinding
-import com.example.awesomechat.ui.homemessage.HomeMessageViewModel
 
 class MyFriendFragment : BaseFragment<MyFriendFragmentBinding>() {
     override fun initViews() {

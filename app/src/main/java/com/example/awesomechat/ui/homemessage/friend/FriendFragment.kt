@@ -1,14 +1,15 @@
-package com.example.awesomechat.ui.friend
+package com.example.awesomechat.ui.homemessage.friend
 
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.FriendFragmentBinding
-import com.example.awesomechat.ui.login.LoginViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FriendFragment : BaseFragment<FriendFragmentBinding>() {
     private lateinit var myPagerAdapter: FriendPagerAdapter
     override fun initViews() {
@@ -27,7 +28,7 @@ class FriendFragment : BaseFragment<FriendFragmentBinding>() {
                 }
 
             }).attach()
-        binding.searchFriend.tvTitleSearch.hint = "Tìm kiếm bạn bè"
+        binding.layoutSearchFriend.tvTitleSearch.hint = "Tìm kiếm bạn bè"
 
     }
 

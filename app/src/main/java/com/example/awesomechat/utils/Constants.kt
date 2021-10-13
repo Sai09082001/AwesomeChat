@@ -19,9 +19,9 @@ object ParamIntent {
 }
 
 object BundleKey {
-    const val KEY_URI = "KEY_URI"
-    const val KEY_PARAM_SITE = "KEY_PARAM_SITE"
-    const val KEY_PARAM_LIST_MEMBER = "KEY_PARAM_LIST_MEMBER"
+    const val KEY_ID_GROUP = "KEY_ID_GROUP"
+    const val KEY_FRIEND = "KEY_FRIEND"
+    const val KEY_IMAGE_GROUP = "KEY_IMAGE_GROUP"
     const val IS_SKIN_BEAUTY_ON = "IS_SKIN_BEAUTY_ON"
     const val IS_HAS_MOSAIC = "IS_HAS_MOSAIC"
     const val IS_SHOW_TEMPLATE_MESSAGE = "IS_SHOW_TEMPLATE_MESSAGE"

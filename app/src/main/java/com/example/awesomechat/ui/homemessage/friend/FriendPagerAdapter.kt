@@ -1,12 +1,12 @@
-package com.example.awesomechat.ui.friend
+package com.example.awesomechat.ui.homemessage.friend
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.awesomechat.ui.alluser.AllUsersFragment
+import com.example.awesomechat.ui.homemessage.friend.alluser.AllUsersFragment
 import com.example.awesomechat.ui.homemessage.HomeMessageFragment
-import com.example.awesomechat.ui.myfriend.MyFriendFragment
-import com.example.awesomechat.ui.requestuser.RequestUsersFragment
+import com.example.awesomechat.ui.homemessage.friend.myfriend.MyFriendFragment
+import com.example.awesomechat.ui.homemessage.friend.requestuser.RequestUsersFragment
 
 
 class FriendPagerAdapter(fragmentActivity: FragmentActivity) :

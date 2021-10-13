@@ -1,4 +1,4 @@
-package com.example.awesomechat.ui.alluser
+package com.example.awesomechat.ui.homemessage.friend.alluser
 
 import android.view.View
 import android.widget.Toast
@@ -9,21 +9,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.AllUsersFragmentBinding
-import com.example.awesomechat.ui.login.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AllUsersFragment : BaseFragment<AllUsersFragmentBinding>() {
-    private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
-    private lateinit var firebaseUser: FirebaseUser
     private lateinit var userAdapter: AllUsersAdapter
 
     override fun initViews() {
         Toast.makeText(context, "All Users Fragment", Toast.LENGTH_SHORT).show()
-
-        firebaseUser = auth.currentUser!!
-
         binding.rvAllUsers.layoutManager = LinearLayoutManager(context)
         val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         binding.rvAllUsers.addItemDecoration(dividerItemDecoration)

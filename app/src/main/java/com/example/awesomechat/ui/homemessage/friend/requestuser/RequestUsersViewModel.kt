@@ -1,4 +1,4 @@
-package com.example.awesomechat.ui.requestuser
+package com.example.awesomechat.ui.homemessage.friend.requestuser
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

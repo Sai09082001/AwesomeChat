@@ -8,11 +8,7 @@ import kotlin.collections.ArrayList
 @IgnoreExtraProperties
 data class Users (
     val userName: String,
-    val mail: String,
-    val password: String,
-    val date : String,
-    val phone : String,
     val profileImage : String,
-    val isMe : String
+    val isFriend : String
     )
 

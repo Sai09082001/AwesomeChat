@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/friendFragment2"
-        android:name="com.example.awesomechat.ui.friend.FriendFragment"
+        android:name="com.example.awesomechat.ui.homemessage.friend.FriendFragment"
         android:label="FriendFragment" />
 </navigation>

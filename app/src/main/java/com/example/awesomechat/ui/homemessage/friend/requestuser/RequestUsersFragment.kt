@@ -1,4 +1,4 @@
-package com.example.awesomechat.ui.requestuser
+package com.example.awesomechat.ui.homemessage.friend.requestuser
 
 import android.view.View
 import android.widget.Toast
@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.RequestUsersFragmentBinding
-import com.example.awesomechat.ui.homemessage.HomeMessageViewModel
 
 class RequestUsersFragment : BaseFragment<RequestUsersFragmentBinding>() {
     private lateinit var requestAdapter: RequestAdapter

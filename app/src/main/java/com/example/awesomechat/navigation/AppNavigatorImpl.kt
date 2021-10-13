@@ -9,6 +9,10 @@ import javax.inject.Inject
 
 @ActivityScoped
 class AppNavigatorImpl @Inject constructor() : BaseNavigatorImpl(), AppNavigation {
+    override fun openGroupToMessageDetailScreen(bundle: Bundle?) {
+        openScreen(R.id.action_message_to_messageDetail,bundle)
+    }
+
     override fun openRegisterToLoginScreen(bundle: Bundle?) {
         openScreen(R.id.action_register_to_loginFragment,bundle)
     }
@@ -23,5 +27,9 @@ class AppNavigatorImpl @Inject constructor() : BaseNavigatorImpl(), AppNavigatio
 
     override fun openLoginToRegisterScreen(bundle: Bundle?) {
         openScreen(R.id.action_login_to_regisFragment,bundle)
+    }
+
+    override fun openProfileToEditProfileScreen(bundle: Bundle?) {
+        openScreen(R.id.action_myPage_to_editProfileFragment, bundle)
     }
 }

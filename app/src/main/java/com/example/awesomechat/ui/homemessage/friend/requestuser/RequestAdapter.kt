@@ -1,4 +1,4 @@
-package com.example.awesomechat.ui.requestuser
+package com.example.awesomechat.ui.homemessage.friend.requestuser
 
 import android.content.Context
 import android.util.Log

@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <FrameLayout
+        android:id="@+id/frame_group"
         android:paddingVertical="@dimen/d_6"
         android:layout_width="match_parent"
         android:layout_marginStart="@dimen/d_6"
@@ -21,7 +22,6 @@
             android:textSize="@dimen/txt_18"
             android:layout_marginStart="@dimen/d_60"
             android:text="@string/txt_user_name"
-            android:layout_marginTop="@dimen/d_4"
             android:layout_gravity="start"
             android:fontFamily="sans-serif-medium"
             android:layout_width="wrap_content"

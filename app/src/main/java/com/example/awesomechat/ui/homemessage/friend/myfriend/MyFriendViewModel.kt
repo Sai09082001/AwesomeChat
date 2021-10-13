@@ -1,4 +1,4 @@
-package com.example.awesomechat.ui.myfriend
+package com.example.awesomechat.ui.homemessage.friend.myfriend
 
 import com.example.awesomechat.base.BaseViewModel
 
