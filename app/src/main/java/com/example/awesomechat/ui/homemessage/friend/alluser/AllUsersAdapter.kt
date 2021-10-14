@@ -28,7 +28,7 @@ class AllUsersAdapter(val context : Context, var listUsers :ArrayList<Users>) :
                         = HashMap<String, Any> ()
 
                 // put() function
-                hashMap.put("request" , binding.tvEmail.text.toString())
+              //  hashMap.put("request" , binding.tvEmail.text.toString())
                 val dataRef = FirebaseDatabase.getInstance().reference.child("Users")
                 dataRef.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {

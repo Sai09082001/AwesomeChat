@@ -11,7 +11,7 @@ const val REWARD_DIAMOND_FLAG = 1111
 const val REWARD_DIAMOND_INTERVAL = 30 * 60 * 1000L
 
 object ParamIntent {
-    const val PARAM_ID = "id"
+    const val PARAM_DATA = "data"
     const val PARAM_PASS = "pass"
     const val PARAM_CODE = "code"
     const val PARAM_MODE = "mode"

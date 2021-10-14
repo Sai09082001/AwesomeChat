@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.awesomechat.R
 import com.example.awesomechat.base.BaseFragment
 import com.example.awesomechat.databinding.RequestUsersFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RequestUsersFragment : BaseFragment<RequestUsersFragmentBinding>() {
     private lateinit var requestAdapter: RequestAdapter
     override fun initViews() {
@@ -20,13 +22,13 @@ class RequestUsersFragment : BaseFragment<RequestUsersFragmentBinding>() {
     }
 
     private fun subcriData() {
-        viewModel.getUserRequest()
-//        mViewModel!!.listRequest.observe(viewLifecycleOwner, Observer {
-//            it.let {
-//                requestAdapter = RequestAdapter(requireContext(), it)
-//                binding!!.rvRequestFriend.adapter = requestAdapter
-//            }
-//        })
+        viewModel.getFriendRequest()
+        viewModel.listFriendRequest.observe(viewLifecycleOwner){
+            it.let {
+                requestAdapter = RequestAdapter(requireContext(), it)
+                binding.rvRequestFriend.adapter = requestAdapter
+            }
+        }
     }
 
     override fun initBinding(mRootView: View): RequestUsersFragmentBinding {

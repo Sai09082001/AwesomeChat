@@ -5,6 +5,6 @@ import com.google.firebase.database.IgnoreExtraProperties
 @IgnoreExtraProperties
 data class Request (
     var userName: String,
-    var mailRequest: String,
+    var stateRequest: Boolean,
     var profileImage : String
     )

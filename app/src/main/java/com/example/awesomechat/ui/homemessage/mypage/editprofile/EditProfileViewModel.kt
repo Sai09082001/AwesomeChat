@@ -29,13 +29,13 @@ class EditProfileViewModel @Inject constructor(
     }
 
      fun updateDataUser(uriProfile: Uri, userName: String, phone: String, date: String) {
-        val user = auth.currentUser
+        val user = auth.currentUser!!
 
         val profileUpdates =
             UserProfileChangeRequest.Builder().setDisplayName(userName)
                 .setPhotoUri(uriProfile).build()
 
-        user!!.updateProfile(profileUpdates)
+        user.updateProfile(profileUpdates)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()

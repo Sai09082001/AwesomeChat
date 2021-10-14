@@ -43,4 +43,5 @@
     <string name="txt_date">NGÀY SINH</string>
     <string name="txt_phone">0123456789</string>
     <string name="txt_phone_number">SỐ ĐIỆN THOẠI</string>
+    <string name="txt_not_network">Kết nối mạng không ổn định</string>
 </resources>

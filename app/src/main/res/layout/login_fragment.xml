@@ -94,6 +94,7 @@
             android:layout_height="wrap_content"/>
     </FrameLayout>
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_forgot_password"
         android:layout_marginEnd="@dimen/d_24"
         android:layout_marginTop="@dimen/d_10"
         android:textSize="@dimen/txt_14"

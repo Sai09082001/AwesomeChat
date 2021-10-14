@@ -15,10 +15,10 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     @ApplicationContext private val context: Context
 ) : BaseViewModel() {
-
-    val pass_Email_Valid = MutableLiveData<Boolean>()
+    var forgotPassword = MutableLiveData<Boolean>()
+    var pass_Email_Valid = MutableLiveData<Boolean>()
     val navigateLogin = SingleLiveEvent<Boolean>()
-    val stateLogin = MutableLiveData<Boolean>()
+    var stateLogin = MutableLiveData<Boolean>()
 
     private val auth by lazy { FirebaseAuth.getInstance() }
 
@@ -51,15 +51,24 @@ class LoginViewModel @Inject constructor(
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-     fun validate(email: String, password: String): Boolean {
+    fun validate(email: String, password: String): Boolean {
         if (email.isEmpty() || password.isEmpty() || password.length < 4) {
             Toast.makeText(context, "Email not validate", Toast.LENGTH_SHORT).show()
             pass_Email_Valid.value = false
             return false
-        } else if (isEmailValid(email) && password.length>= 4) {
+        } else if (isEmailValid(email) && password.length >= 4) {
             pass_Email_Valid.value = true
             return true
         } else
             return true
+    }
+
+    fun doForgotPassword(email: String) {
+
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                forgotPassword.value = task.isSuccessful
+            }
+
     }
 }
